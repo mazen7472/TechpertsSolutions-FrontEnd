@@ -1,0 +1,18 @@
+.about{
+    background-color: #f0f0f0;
+}
+.about-img{
+    background-image: url('../../../assets/Images/about.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+}
+@media only screen and (min-width: 768px) {
+    .container2{
+        overflow: hidden;
+        padding-right: 10px;
+    }
+    .about-img{
+        background-position: center;
+    }
+}
