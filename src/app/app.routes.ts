@@ -1,20 +1,40 @@
-import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
-import { BlogComponent } from './components/blog/blog.component';
-import { AboutComponent } from './components/about/about.component';
-import { ProductsComponent } from './components/products/products.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { LogInComponent } from './components/log-in/log-in.component';
-import { RegesterComponent } from './components/regester/regester.component';
 
 export const routes: Routes = [
-    { path:'', redirectTo: 'home', pathMatch: 'full' },
-    { path:'home',component: HomeComponent,title: 'Home Page' },
-    { path:'blog',component: BlogComponent,title: 'Blog Page' },
-    { path:'about',component: AboutComponent,title: 'About Page' },
-    { path:'products',component: ProductsComponent,title: 'Products Page' },
-    { path:'contact',component: ContactComponent,title: 'Contact Page' },
-    { path:'login',component: LogInComponent,title: 'LogIn Page' },
-    { path:'regester',component: RegesterComponent,title: 'Regester Page' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  { path: 'home', loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent), title: 'Home Page' },
+  { path: 'blog', loadComponent: () => import('./components/blog/blog.component').then(m => m.BlogComponent), title: 'Blog Page' },
+  { path: 'about', loadComponent: () => import('./components/about/about.component').then(m => m.AboutComponent), title: 'About Page' },
+  { path: 'products', loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent), title: 'Products Page' },
+  { path: 'contact', loadComponent: () => import('./components/contact/contact.component').then(m => m.ContactComponent), title: 'Contact Page' },
+  { path: 'login', loadComponent: () => import('./components/log-in/log-in.component').then(m => m.LogInComponent), title: 'LogIn Page' },
+  { path: 'regester', loadComponent: () => import('./components/regester/regester.component').then(m => m.RegesterComponent), title: 'Regester Page' },
+
+  { path: 'selector', loadComponent: () => import('./components/pc-build/selector/selector.component').then(m => m.SelectorComponent), title: 'Component Selector' },
+  { path: 'categories', loadComponent: () => import('./components/categories/categories.component').then(m => m.CategoriesComponent), title: 'Product Categories' },
+  { path: 'category-details/:id', loadComponent: () => import('./components/categories/category-details/category-details.component').then(m => m.CategoryDetailsComponent), title: 'Category Products' },
+
+  {
+    path: 'dashboard',
+    loadComponent: () => import('./components/dashboard/dashboard.component').then(m => m.DashboardComponent),
+    title: 'Admin Dashboard',
+    children: [
+      {
+        path: 'customers',
+        loadComponent: () => import('./components/dashboard/components/customers/customers.component').then(m => m.CustomersComponent),
+        title: 'Dashboard Customers'
+      },
+      {
+        path: 'new-customer',
+        loadComponent: () => import('./components/dashboard/components/add-new-customer/add-new-customer.component').then(m => m.AddNewCustomerComponent),
+        title: 'Dashboard New Customer'
+      },
+      {
+        path: 'edit-customer',
+        loadComponent: () => import('./components/dashboard/components/edit-customer/edit-customer.component').then(m => m.EditCustomerComponent),
+        title: 'Edit Customer'
+      }
+    ]
+  }
 ];

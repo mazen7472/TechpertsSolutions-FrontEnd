@@ -1,3 +1,104 @@
-.footer-bg{
-    background-image: url('../../../assets/Images/footer-bg.jpg');
+.footer-bg {
+  background: var(--bg-color);
+  background-image: url('../../../assets/Images/footer-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Text and layout */
+.footer-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-heading {
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.footer-links li {
+  padding-bottom: 0.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.footer-links li:hover {
+  color: var(--accent-blue);
+}
+
+/* Input field */
+.footer-input {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem 0 0 0.375rem;
+  padding: 0.75rem 1rem;
+}
+
+.footer-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.footer-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 140, 255, 0.2);
+  border-color: var(--accent-blue);
+}
+
+/* Submit button */
+.btn-submit {
+  background-color: var(--accent-red);
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.2rem;
+  font-weight: 600;
+  border-radius: 0 0.375rem 0.375rem 0;
+  transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: var(--accent-blue);
+}
+
+/* Divider and copy */
+.footer-divider {
+  border-top: 1px solid var(--border-color);
+  margin-top: 2rem;
+}
+
+.footer-copy {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-heading {
+    font-size: 1.1rem;
+  }
+
+  .footer-bg {
+    text-align: center;
+  }
+
+  .footer-input,
+  .btn-submit {
+    width: 100%;
+    border-radius: 0.375rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .input-group .btn-submit {
+    margin-top: 0.5rem;
+  }
 }

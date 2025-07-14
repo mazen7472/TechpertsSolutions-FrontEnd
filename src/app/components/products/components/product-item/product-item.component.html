@@ -1,0 +1,21 @@
+<div class="col">
+      <div class="card h-100 shadow-sm">
+        <!-- Use a placeholder image or you can add imageUrl if you want -->
+        <img src="https://picsum.photos/seed/{{ productC.id }}/200/150" class="card-img-top" alt="{{ productC.name }}">
+
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">{{ productC.name }}</h5>
+          <p class="card-text flex-grow-1">{{ productC.description }}</p>
+          @if (productC.title) {
+            <p><small class="text-muted">{{ productC.title }}</small></p>
+          }
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-bold text-primary">${{ productC.price }}</span>
+            @if (productC.link) {
+                <a [href]="productC.link" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
+            }
+          </div>
+          <p class="mt-2"><small class="text-secondary">Category: {{ productC.category }}</small></p>
+        </div>
+      </div>
+    </div>

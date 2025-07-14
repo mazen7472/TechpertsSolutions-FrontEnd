@@ -1,0 +1,36 @@
+<div class="card p-3 shadow-sm">
+  <h4 class="mb-3">All Customers</h4>
+
+  @if (customers.length === 0) {
+    <div class="text-muted">No customers found.</div>
+  } @else {
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (customer of customers; track customer.email) {
+            <tr>
+              <td>{{ customer.name }}</td>
+              <td>{{ customer.email }}</td>
+              <td>{{ customer.phone }}</td>
+              <td>
+                @if (customer.active) {
+                  <span class="badge bg-success">Active</span>
+                } @else {
+                  <span class="badge bg-secondary">Inactive</span>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

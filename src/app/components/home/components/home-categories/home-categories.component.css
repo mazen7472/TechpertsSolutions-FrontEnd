@@ -1,0 +1,24 @@
+.categories-wrapper {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--border-color);
+  padding: 30px 10px;
+}
+
+.category-img {
+  border-radius: 10px;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.category-img:hover {
+  transform: scale(1.05);
+}
+
+.category-label {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-top: 10px;
+  color: var(--text-primary);
+}

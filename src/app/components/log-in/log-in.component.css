@@ -1,0 +1,85 @@
+/* Wrapper adjustments */
+.logIngSystem {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  padding: 4rem 1rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container box */
+.logIngSystem .container {
+  background-color: var(--card-bg) !important;
+  color: var(--text-primary);
+  box-shadow: 0 4px 15px var(--shadow-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Title */
+.logIngSystem h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-primary);
+}
+
+/* Labels */
+.logIngSystem .form-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 0.3rem;
+}
+
+/* Inputs */
+.logIngSystem .form-control {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  border-radius: 6px;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.logIngSystem .form-control::placeholder {
+  color: var(--text-secondary);
+}
+
+.logIngSystem .form-control:focus {
+  border-color: var(--accent-blue);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26, 140, 255, 0.2);
+}
+
+/* Button */
+.logIngSystem .btn-primary {
+  background-color: var(--accent-red);
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.logIngSystem .btn-primary:hover {
+  background-color: var(--accent-blue);
+}
+
+/* Link styling */
+.logIngSystem a.btn-link {
+  color: var(--accent-blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.logIngSystem a.btn-link:hover {
+  color: var(--accent-red);
+}
+
+/* Error placeholder (optional visibility) */
+.logIngSystem .text-danger {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .logIngSystem .container {
+    padding: 2rem 1.2rem !important;
+  }
+}

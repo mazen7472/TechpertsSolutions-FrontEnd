@@ -6,7 +6,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-regester',
   standalone: true,
-  imports: [RouterLink,ReactiveFormsModule, NgClass],
+  imports: [RouterLink,ReactiveFormsModule],
   templateUrl: './regester.component.html',
   styleUrl: './regester.component.css'
 })

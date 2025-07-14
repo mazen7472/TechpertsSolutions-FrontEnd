@@ -1,1 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  /* Light theme colors */
+  --bg-color: #f0f0f0;
+  --text-primary: #333333;
+  --text-secondary: #555555;
+  --accent-red: #ff1a1a;
+  --accent-blue: #1a8cff;
+  --card-bg: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --sidebar-bg: #f8f9fa;
+  --sidebar-text: #333;
+  --sidebar-active-bg: #0d6efd;
+  --sidebar-active-text: #fff;
+  --content-bg: #ffffff;
+  --card-bg: #fff;
+  --text-primary: #222;
+  --text-muted: #6c757d;
+  --input-bg: #fff;
+  --input-text: #212529;
+  --input-border: #ced4da;
+  --button-bg: #198754; /* Bootstrap green */
+  --button-text: #fff;
+  --button-hover-bg: #157347;
+  --card-bg: #fff;
+  --text-primary: #222;
+  --text-muted: #6c757d;
+  --table-bg: #fff;
+  --table-header-bg: #f8f9fa;
+  --table-border-color: #dee2e6;
+  --badge-active-bg: #198754;
+  --badge-inactive-bg: #6c757d;
+  --badge-text-color: #fff;
+
+  /* Navbar colors */
+  --navbar-bg: #b22222;          /* firebrick red */
+  --navbar-text: #ffffff;
+  --navbar-hover: #ff4c4c;       /* lighter red */
+}
+
+.dark-mode {
+  /* Dark theme colors */
+  --bg-color: #121621;
+  --text-primary: #eee;
+  --text-secondary: #aaa;
+  --accent-red: #ff4c4c;
+  --accent-blue: #4ca6ff;
+  --card-bg: #1e2230;
+  --border-color: rgba(255, 255, 255, 0.15);
+  --shadow-color: rgba(255, 255, 255, 0.2);
+  --sidebar-bg: #1e2230;
+  --sidebar-text: #ddd;
+  --sidebar-active-bg: #4ca6ff;
+  --sidebar-active-text: #000;
+  --content-bg: #121621;  
+  --card-bg: #1e2230;
+  --text-primary: #eee;
+  --text-muted: #aaa;
+  --input-bg: #2a2e42;
+  --input-text: #ddd;
+  --input-border: #444c6e;
+  --button-bg: #28a745;
+  --button-text: #fff;
+  --button-hover-bg: #1e7e34;
+  --card-bg: #1e2230;
+  --text-primary: #eee;
+  --text-muted: #aaa;
+  --table-bg: #2a2e42;
+  --table-header-bg: #343a54;
+  --table-border-color: #444c6e;
+  --badge-active-bg: #28a745;
+  --badge-inactive-bg: #6c757d;
+  --badge-text-color: #fff;
+
+  /* Navbar colors in dark */
+  --navbar-bg: #5a0000;           /* dark red */
+  --navbar-text: #ffcccc;
+  --navbar-hover: #ff6666;
+}

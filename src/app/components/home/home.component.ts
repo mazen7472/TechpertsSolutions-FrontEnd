@@ -1,36 +1,18 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, Renderer2, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component } from '@angular/core';
+import { HomeSliderComponent } from "./components/home-slider/home-slider.component";
+import { HomeCategoriesComponent } from "./components/home-categories/home-categories.component";
+import { HomeServicesComponent } from "./components/home-services/home-services.component";
+import { HomeProductsComponent } from "./components/home-products/home-products.component";
+import { HomePrandsComponent } from "./components/home-prands/home-prands.component";
+import { HomeBannerComponent } from "./components/home-banner/home-banner.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [HomeSliderComponent, HomeCategoriesComponent, HomeServicesComponent, HomeProductsComponent, HomePrandsComponent, HomeBannerComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements AfterViewInit {
+export class HomeComponent  {
 
-  @ViewChild('carouselExample') carouselRef!: ElementRef;
-
-  constructor(
-    private renderer: Renderer2,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
-
-  ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      const bootstrap = (window as any).bootstrap;
-      const carouselElement = this.carouselRef.nativeElement;
-
-      if (carouselElement && bootstrap?.Carousel) {
-        new bootstrap.Carousel(carouselElement, {
-          interval: 3000,
-          wrap: true,
-          pause: false
-        });
-      } else {
-        console.warn('Bootstrap is not available');
-      }
-    }
-  }
 }

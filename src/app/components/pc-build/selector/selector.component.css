@@ -1,0 +1,97 @@
+/* Table base */
+.table {
+  background-color: var(--table-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--table-border-color) !important;
+}
+
+/* Table header */
+.table thead,
+.table thead th {
+  background-color: var(--table-header-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--table-border-color) !important;
+}
+
+/* Table body cells */
+.table tbody td {
+  background-color: var(--table-bg) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--table-border-color) !important;
+}
+
+/* Hover effect */
+.table-hover tbody tr:hover {
+  background-color: var(--accent-blue) !important;
+  color: var(--navbar-text) !important;
+  cursor: pointer;
+}
+
+/* Center align all table cells */
+.table th, .table td {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+/* Links inside table */
+.table a {
+  color: var(--accent-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.table a:hover {
+  color: var(--accent-red);
+  text-decoration: underline;
+}
+
+.btn-outline-info {
+  color: var(--accent-blue) !important;
+  border-color: var(--accent-blue) !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-info:hover {
+  color: var(--navbar-text) !important;
+  background-color: var(--accent-blue) !important;
+  border-color: var(--accent-blue) !important;
+}
+
+.btn-outline-warning {
+  color: #ffc107 !important; /* You can override with a variable if you want */
+  border-color: #ffc107 !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-warning:hover {
+  color: var(--navbar-text) !important;
+  background-color: #ffc107 !important;
+  border-color: #ffc107 !important;
+}
+
+.btn-outline-danger {
+  color: var(--accent-red) !important;
+  border-color: var(--accent-red) !important;
+  background-color: transparent !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-danger:hover {
+  color: var(--navbar-text) !important;
+  background-color: var(--accent-red) !important;
+  border-color: var(--accent-red) !important;
+}
+.badge.bg-success {
+  background-color: var(--badge-active-bg) !important;
+  color: var(--badge-text-color) !important;
+}
+
+.badge.bg-secondary {
+  background-color: var(--badge-inactive-bg) !important;
+  color: var(--badge-text-color) !important;
+}
+.table, .btn, .badge {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}

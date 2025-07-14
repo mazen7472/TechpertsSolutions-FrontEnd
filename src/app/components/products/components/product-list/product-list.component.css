@@ -1,0 +1,25 @@
+.container {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+}
+
+.pagination .page-item.disabled .page-link {
+  cursor: not-allowed;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: var(--button-bg);
+  border-color: var(--button-bg);
+  color: var(--button-text);
+}
+
+.page-link {
+  color: var(--text-primary);
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+}
+
+.page-link:hover {
+  background-color: var(--accent-blue);
+  color: var(--button-text);
+}
