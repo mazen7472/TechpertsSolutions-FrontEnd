@@ -1,22 +1,20 @@
 <div
   class="cart-flyout p-4 border rounded shadow-lg"
-  *ngIf="cartItems.length > 0; else emptyCart"
+  *ngIf="CartItems.length > 0; else emptyCart"
   style="background-color: var(--card-bg);"
 >
   <h4 class="cart-title mb-4 border-bottom pb-2">🛍️ Your Cart</h4>
 
   <!-- Cart Items -->
   <div class="cart-items mb-4">
-    <div
-      class="cart-item row g-3 align-items-center mb-3 border-bottom pb-3"
-      *ngFor="let item of cartItems"
-    >
+    @for (item of CartItems; track $index) {
+      <div class="cart-item row g-3 align-items-center mb-3 border-bottom pb-3">
       <!-- Image -->
       <div class="col-3 col-md-2">
         <img
-          [src]="item.product?.imageUrl"
+          [src]="item.product?.imageUrl || 'assets/placeholder.jpg'"
           class="img-fluid rounded"
-          alt="{{ item.product?.name || 'Product Image' }}"
+          [alt]="item.product?.name || 'Product Image'"
         />
       </div>
 
@@ -31,7 +29,7 @@
           <span class="me-3 mb-1">
             Price:
             <strong class="text-success ms-1">
-              {{ item.product?.discountPrice ?? item.product?.price | currency: 'EGP' }}
+              {{ item.product?.price | currency: 'EGP' }}
             </strong>
           </span>
         </div>
@@ -44,6 +42,7 @@
         </button>
       </div>
     </div>
+    }
   </div>
 
   <!-- Cart Summary -->
@@ -51,7 +50,7 @@
     <p class="fs-5 fw-semibold">
       Total:
       <span class="text-success">
-        {{ totalPrice | currency: 'EGP' }}
+        {{ getTotal() | currency: 'EGP' }}
       </span>
     </p>
   </div>
@@ -61,7 +60,7 @@
     <button class="btn btn-outline-secondary" (click)="clearCart()">
       🗑️ Clear Cart
     </button>
-    <button class="btn btn-success" (click)="checkout()">
+    <button class="btn btn-outline-secondary" (click)="checkout()">
       💳 Proceed to Checkout
     </button>
   </div>

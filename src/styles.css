@@ -130,10 +130,10 @@ a{
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
-  /*background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDJmbzFwOWxvNTFjeTVrdXozZmpjMmxhN3NwenJzNzZ1NjRuaGNjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NzSUEgbTWB7TW/giphy.gif'); 
+  background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDJmbzFwOWxvNTFjeTVrdXozZmpjMmxhN3NwenJzNzZ1NjRuaGNjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NzSUEgbTWB7TW/giphy.gif'); 
   background-size:fit;
   background-repeat: repeat;
   background-attachment: fixed;
-  background-position: center;*/
+  background-position: center;
   padding-top: 70px;
 }

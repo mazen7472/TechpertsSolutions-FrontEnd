@@ -134,3 +134,8 @@ a.text-info:hover {
     gap: 1rem;
   }
 }
+
+.btn-outline-secondary:hover{
+  /* color: black !important; */
+  background-color: var(--accent-blue) !important;
+}

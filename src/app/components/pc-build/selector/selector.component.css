@@ -16,7 +16,13 @@
 /* Table body cells */
 .table tbody td {
   background-color: var(--table-bg) !important;
-  color: var(--text-primary) !important;
+  color: var(--accent-blue) !important;
+  border-color: var(--table-border-color) !important;
+  transition: all 0.3s ease-out;
+}
+.table tbody td:hover {
+  background-color: var(--table-bg) !important;
+  color: white !important;
   border-color: var(--table-border-color) !important;
 }
 

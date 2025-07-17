@@ -1,7 +1,7 @@
 import { CartService } from './../../Services/cart.service';
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -20,6 +20,12 @@ export class NavBarComponent implements OnInit {
   cartItemCount$!: Observable<number>;
   cartTotalPrice$!: Observable<number>;
   animateCart$!: Observable<boolean>;
+  userName : string | null = null;
+  cartCount = 0;
+
+
+    private _platformId = inject(PLATFORM_ID);
+  private _isBrowser = isPlatformBrowser(this._platformId);
 
   constructor(private cartService: CartService) {}
 
@@ -27,6 +33,16 @@ export class NavBarComponent implements OnInit {
     this.cartItemCount$ = this.cartService.itemCount$;
     this.cartTotalPrice$ = this.cartService.totalPrice$;
     this.animateCart$ = this.cartService.animateCart$;
+    if (this._isBrowser) {
+      // Only access localStorage if running in the browser
+      this.isLogedIn = !!localStorage.getItem('userToken');
+      this.userName = localStorage.getItem('userName')
+
+
+      this.cartService.getCart().subscribe(items => {
+        this.cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
+      });
+    }
   }
 
   toggleDarkMode(): void {
