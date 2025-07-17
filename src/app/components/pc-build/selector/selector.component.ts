@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { IProduct } from './../../../Interfaces/iproduct';
+import { NgClass, NgIf } from '@angular/common';
+import { IProduct } from '../../../Interfaces/iproduct';
 
 @Component({
   selector: 'app-selector',
   standalone: true,
-  imports: [],
+  imports: [NgClass,NgIf],
   templateUrl: './selector.component.html',
   styleUrl: './selector.component.css'
 })
@@ -14,28 +15,32 @@ export class SelectorComponent {
     name: string;
     selected: boolean;
     selectedProduct: IProduct | null;
-}[] = [
-  {
-    name: 'Processor',
-    selected: true,
-    selectedProduct: {
-      id: 'fake-id-1',
-      name: 'Intel Core i9',
-      description: 'High-performance desktop CPU',
-      price: 549
-    }
-  },
+  }[] = [
+    {
+      name: 'Processor',
+      selected: true,
+      selectedProduct: {
+        id: 'fake-id-1',
+        name: 'Intel Core i9',
+        price: 549,
+        discountPrice: 499,
+        imageUrl: 'https://example.com/products/intel-core-i9.jpg',
+        categoryName: 'Components',
+        subCategoryId: 'SUBCAT-PROCESSOR-001',
+        subCategoryName: 'Processors',
+        status: 'Available'
+      }
+    },
     { name: 'Motherboard', selected: false, selectedProduct: null },
     { name: 'CPU Cooler', selected: false, selectedProduct: null },
     { name: 'Case', selected: false, selectedProduct: null },
-    { name: 'Graphics CArd', selected: false, selectedProduct: null },
+    { name: 'Graphics Card', selected: false, selectedProduct: null },
     { name: 'RAM', selected: false, selectedProduct: null },
     { name: 'Storage', selected: false, selectedProduct: null },
     { name: 'Case Cooler', selected: false, selectedProduct: null },
     { name: 'Power Supply', selected: false, selectedProduct: null },
     { name: 'Monitor', selected: false, selectedProduct: null },
     { name: 'Accessories', selected: false, selectedProduct: null }
-    // Add more as needed
   ];
 
   constructor(private router: Router) {

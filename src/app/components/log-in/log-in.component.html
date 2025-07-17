@@ -1,7 +1,7 @@
 <div class="logIngSystem mt-5 d-flex justify-content-center align-items-center m-5">
     <div class="container p-4 shadow-lg rounded-3" style="max-width: 500px; background-color: #ffffff;">
         <h1 class="text-secondary text-center mb-4">Login</h1>
-        <form [formGroup]="loginForm" class="signIn">
+        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="signIn">
             <div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -12,8 +12,19 @@
                     <input type="password" formControlName="password" class="form-control" placeholder="Enter Your Password">
                 </div>
                 <div class="mb-3 text-center text-danger d-none"></div>
-                <button type="submit" class="btn btn-primary w-100 py-2">Log In</button>
+                <button type="submit" class="btn btn-primary w-100 py-2">
+                    @if (!isLoading) {
+                        <span>Log In</span>
+                    }@else if (isLoading) {
+                        <span>Logging in...</span>
+                    }
+                </button>
             </div>
+            @if (errorMessage) {
+                <div class="mb-3 text-center text-danger">
+                    {{errorMessage}}
+                </div>
+            }
             <p class="text-center pt-2">
                 Don’t have an account?
                 <a routerLink="/regester" class="btn btn-link text-secondary">Sign Up</a>

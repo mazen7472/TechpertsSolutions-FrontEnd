@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
 
 .banner-container {
-  height: 100vh;
+  height: auto;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--bg-color);
+  background: transparent;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -269,3 +269,4 @@
     width: 40px;
   }
 }
+

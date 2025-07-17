@@ -1,27 +1,63 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { CartService } from './../../Services/cart.service';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
-  imports: [RouterLink,RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+  styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
-  isLogedIn : boolean = false;
-
+export class NavBarComponent implements OnInit {
+  isLogedIn = false;
   isDarkMode = false;
-  iconClass = 'bi bi-moon-stars';  // initial icon
+  scrolled = false;
+  logo = 'assets/Images/logo.png';
 
-  toggleDarkMode() {
+  cartItemCount$!: Observable<number>;
+  cartTotalPrice$!: Observable<number>;
+  animateCart$!: Observable<boolean>;
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    this.cartItemCount$ = this.cartService.itemCount$;
+    this.cartTotalPrice$ = this.cartService.totalPrice$;
+    this.animateCart$ = this.cartService.animateCart$;
+  }
+
+  toggleDarkMode(): void {
     this.isDarkMode = !this.isDarkMode;
-    if (this.isDarkMode) {
-      document.body.classList.add('dark-mode');
-      this.iconClass = 'bi bi-brightness-high-fill';
-    } else {
-      document.body.classList.remove('dark-mode');
-      this.iconClass = 'bi bi-moon-stars';
-    }
+    document.body.classList.toggle('dark-mode', this.isDarkMode);
+    document.body.classList.toggle('light-theme', !this.isDarkMode);
+    document.body.classList.toggle('dark-theme', this.isDarkMode);
+  }
+
+  @HostListener('window:scroll')
+  onWindowScroll(): void {
+    this.scrolled = window.scrollY > 20;
+  }
+
+  get navbarClasses(): Record<string, boolean> {
+    return {
+      'custom-navbar': true,
+      'navbar-scrolled': this.scrolled,
+      'dark-mode': this.isDarkMode,
+    };
+  }
+
+  get linkClass(): string {
+    return this.isDarkMode ? 'text-dark' : 'text-white';
+  }
+
+  get logoClass(): string {
+    return this.isDarkMode ? 'text-dark' : 'text-white';
+  }
+
+  get themeIcon(): string {
+    return this.isDarkMode ? 'bi-moon-fill' : 'bi-sun-fill';
   }
 }

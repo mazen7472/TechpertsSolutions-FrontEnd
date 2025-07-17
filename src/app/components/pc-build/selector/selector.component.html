@@ -3,9 +3,10 @@
     <tr>
       <th>Component</th>
       <th>Product</th>
-      <th>Title</th>
+      <th>Subcategory</th>
+      <th>Status</th>
       <th>Price</th>
-      <th>Link</th>
+      <th>Discount</th>
       <th>Remove</th>
     </tr>
   </thead>
@@ -18,24 +19,50 @@
           @if (!component.selected) {
             <button class="btn btn-outline-info"
                     (click)="navigateToCategory(component.name)">
-              ADD Component
+              Add Component
             </button>
           } @else {
-            {{ component.selectedProduct?.name }}
-            <button class="btn btn-sm btn-outline-warning ms-2"
-                    (click)="chooseAnother(component.name)">
-              Choose Another
-            </button>
+            <div>
+              {{ component.selectedProduct?.name }}
+              <button class="btn btn-sm btn-outline-warning ms-2"
+                      (click)="chooseAnother(component.name)">
+                Choose Another
+              </button>
+            </div>
           }
         </td>
 
-        <td>{{ component.selectedProduct?.title ?? '-' }}</td>
-        <td>{{ component.selectedProduct?.price ?? '-' }}</td>
-        <td>
-          @if (component.selectedProduct?.link) {
-            <a [href]="component.selectedProduct?.link" target="_blank">Product Link</a>
-          }
-        </td>
+        <td>{{ component.selectedProduct?.subCategoryName || '-' }}</td>
+
+       <td>
+  <ng-container *ngIf="component.selectedProduct as product; else noStatus">
+    <span [ngClass]="{
+      'text-success': product.status === 'Available',
+      'text-danger': product.status === 'OutOfStock'
+    }">
+      {{ product.status || '-' }}
+    </span>
+  </ng-container>
+  <ng-template #noStatus>-</ng-template>
+</td>
+
+
+       <td>
+  <ng-container *ngIf="component.selectedProduct as product; else noPrice">
+    ${{ product.price }}
+  </ng-container>
+  <ng-template #noPrice>-</ng-template>
+</td>
+
+<td>
+  <ng-container *ngIf="component.selectedProduct as product; else noDiscount">
+    <ng-container *ngIf="product.discountPrice < product.price; else noDiscount">
+      <span class="text-success">${{ product.discountPrice }}</span>
+    </ng-container>
+  </ng-container>
+  <ng-template #noDiscount>-</ng-template>
+</td>
+
 
         <td>
           @if (component.selected) {

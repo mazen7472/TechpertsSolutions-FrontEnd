@@ -1,13 +1,9 @@
 .footer-bg {
-  background: var(--bg-color);
-  background-image: url('../../../assets/Images/footer-bg.jpg');
-  background-size: cover;
-  background-position: center;
+  background-color: var(--card-bg); /* will adapt to light or dark */
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Text and layout */
 .footer-description {
   color: var(--text-secondary);
   font-size: 0.95rem;
@@ -32,17 +28,17 @@
   color: var(--accent-blue);
 }
 
-/* Input field */
+/* Input Field */
 .footer-input {
-  background-color: var(--card-bg);
-  color: var(--text-primary);
-  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  border: 1px solid var(--input-border);
   border-radius: 0.375rem 0 0 0.375rem;
   padding: 0.75rem 1rem;
 }
 
 .footer-input::placeholder {
-  color: var(--text-secondary);
+  color: var(--text-muted);
 }
 
 .footer-input:focus {
@@ -51,11 +47,11 @@
   border-color: var(--accent-blue);
 }
 
-/* Submit button */
+/* Submit Button */
 .btn-submit {
   background-color: var(--accent-red);
   border: none;
-  color: #fff;
+  color: var(--button-text);
   padding: 0.75rem 1.2rem;
   font-weight: 600;
   border-radius: 0 0.375rem 0.375rem 0;
@@ -66,7 +62,7 @@
   background-color: var(--accent-blue);
 }
 
-/* Divider and copy */
+/* Divider and Copy */
 .footer-divider {
   border-top: 1px solid var(--border-color);
   margin-top: 2rem;
@@ -74,11 +70,11 @@
 
 .footer-copy {
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   margin-top: 1rem;
 }
 
-/* Responsive */
+/* Responsive Styling */
 @media (max-width: 768px) {
   .footer-heading {
     font-size: 1.1rem;

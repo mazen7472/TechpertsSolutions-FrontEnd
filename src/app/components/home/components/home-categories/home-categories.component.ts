@@ -9,11 +9,11 @@ import { Component } from '@angular/core';
 })
 export class HomeCategoriesComponent {
   categories = [
-    { label: 'SERVICES', imageUrl: '../../../../../assets/Images/Categories/services.png' },
+    { label: 'SERVICES', imageUrl: '../../../../../assets/Images/Categories/customer-service-1.png' },
     { label: 'Processors ', imageUrl: '../../../../../assets/Images/Categories/processors.png' },
     { label: 'Mother Boards', imageUrl: '../../../../../assets/Images/Categories/motherboard.png' },
-    { label: 'Graphics Cards', imageUrl: '../../../../../assets/Images/Categories/services.png' },
+    { label: 'Graphics Cards', imageUrl: '../../../../../assets/Images/Categories/video-card.png' },
     { label: 'LapTop', imageUrl: '../../../../../assets/Images/Categories/laptop.png' },
-    { label: 'Ram', imageUrl: '../../../../../assets/Images/Categories/services.png' }
+    { label: 'Ram', imageUrl: '../../../../../assets/Images/Categories/ram.png' }
   ];
 }

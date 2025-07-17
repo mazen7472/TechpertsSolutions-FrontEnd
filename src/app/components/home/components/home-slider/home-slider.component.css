@@ -1,0 +1,76 @@
+.enhanced-carousel {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-bottom: 3rem;
+  max-height: 320px;
+}
+
+.carousel-img {
+  height: 320px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  filter: none; /* removed brightness */
+}
+
+.carousel-item:hover .carousel-img {
+  transform: scale(1.02);
+}
+
+.carousel-overlay {
+  display: none; /* hide if clarity matters more than design */
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  border: none;
+  padding: 0.75rem 1.2rem;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(127, 90, 240, 0.4);
+  transition: all 0.3s ease;
+}
+
+.custom-arrow:hover {
+  background-color: rgba(127, 90, 240, 0.2);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.custom-arrow:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(127, 90, 240, 0.6);
+}
+
+.carousel-control-prev.custom-arrow {
+  left: 1rem;
+}
+
+.carousel-control-next.custom-arrow {
+  right: 1rem;
+}
+
+.arrow-icon {
+  font-size: 1.5rem;
+  color: #00ffff;
+  text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .carousel-img {
+    height: 240px;
+  }
+
+  .arrow-icon {
+    font-size: 1.2rem;
+  }
+
+  .custom-arrow {
+    padding: 0.6rem 1rem;
+  }
+}

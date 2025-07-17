@@ -1,18 +1,62 @@
-.about{
-    background-color: #f0f0f0;
+.about {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
-.about-img{
-    background-image: url('../../../assets/Images/about.jpg');
-    background-size: cover;
-    height: 100vh;
-    display: flex;
+
+.about h1,
+.about p {
+  color: var(--text-primary);
 }
+
+.about-img {
+  background-image: url('../../../assets/Images/about.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: flex;
+  background-position: center;
+  border-radius: 0.5rem;
+  box-shadow: var(--box-shadow);
+}
+
+.accordion-button {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  box-shadow: none;
+}
+
+.accordion-body {
+  background-color: var(--card-bg);
+  color: var(--text-secondary);
+}
+
+.accordion-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  box-shadow: var(--box-shadow);
+}
+
+.accordion-button::after {
+  filter: brightness(0.8);
+}
+
 @media only screen and (min-width: 768px) {
-    .container2{
-        overflow: hidden;
-        padding-right: 10px;
-    }
-    .about-img{
-        background-position: center;
-    }
+  .container2 {
+    overflow: hidden;
+    padding-right: 10px;
+  }
+
+  .about-img {
+    background-position: center;
+  }
 }

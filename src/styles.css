@@ -1,79 +1,139 @@
+/* === Default (Light) Theme === */
 :root {
-  /* Light theme colors */
+  /* Layout & Backgrounds */
   --bg-color: #f0f0f0;
-  --text-primary: #333333;
+  --content-bg: #ffffff;
+  --card-bg: #ffffff;
+  --sidebar-bg: #f8f9fa;
+
+  /* Typography */
+  --text-primary: #222222;
   --text-secondary: #555555;
+  --text-muted: #6c757d;
+  --sidebar-text: #333333;
+
+  /* Accent Colors */
   --accent-red: #ff1a1a;
   --accent-blue: #1a8cff;
-  --card-bg: #ffffff;
+
+  /* Borders & Shadows */
   --border-color: rgba(0, 0, 0, 0.1);
   --shadow-color: rgba(0, 0, 0, 0.15);
-  --sidebar-bg: #f8f9fa;
-  --sidebar-text: #333;
+
+  /* Sidebar Active State */
   --sidebar-active-bg: #0d6efd;
-  --sidebar-active-text: #fff;
-  --content-bg: #ffffff;
-  --card-bg: #fff;
-  --text-primary: #222;
-  --text-muted: #6c757d;
-  --input-bg: #fff;
+  --sidebar-active-text: #ffffff;
+
+  /* Input Fields */
+  --input-bg: #ffffff;
   --input-text: #212529;
   --input-border: #ced4da;
-  --button-bg: #198754; /* Bootstrap green */
-  --button-text: #fff;
+
+  /* Buttons */
+  --button-bg: #198754;
+  --button-text: #ffffff;
   --button-hover-bg: #157347;
-  --card-bg: #fff;
-  --text-primary: #222;
-  --text-muted: #6c757d;
-  --table-bg: #fff;
+
+  /* Tables */
+  --table-bg: #ffffff;
   --table-header-bg: #f8f9fa;
   --table-border-color: #dee2e6;
+
+  /* Badges */
   --badge-active-bg: #198754;
   --badge-inactive-bg: #6c757d;
-  --badge-text-color: #fff;
+  --badge-text-color: #ffffff;
 
-  /* Navbar colors */
-  --navbar-bg: #b22222;          /* firebrick red */
+  /* Navbar */
+  --navbar-bg: #b22222;      /* Firebrick */
   --navbar-text: #ffffff;
-  --navbar-hover: #ff4c4c;       /* lighter red */
+  --navbar-hover: #ff4c4c;
+
+  /* Primary/Secondary (optional) */
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
 }
 
-.dark-mode {
-  /* Dark theme colors */
+/* === Dark Theme === */
+body.dark-theme {
   --bg-color: #121621;
-  --text-primary: #eee;
-  --text-secondary: #aaa;
+  --content-bg: #121621;
+  --card-bg: #1e2230;
+  --sidebar-bg: #1e2230;
+
+  --text-primary: #eeeeee;
+  --text-secondary: #aaaaaa;
+  --text-muted: #aaaaaa;
+  --sidebar-text: #dddddd;
+
   --accent-red: #ff4c4c;
   --accent-blue: #4ca6ff;
-  --card-bg: #1e2230;
+
   --border-color: rgba(255, 255, 255, 0.15);
   --shadow-color: rgba(255, 255, 255, 0.2);
-  --sidebar-bg: #1e2230;
-  --sidebar-text: #ddd;
+
   --sidebar-active-bg: #4ca6ff;
-  --sidebar-active-text: #000;
-  --content-bg: #121621;  
-  --card-bg: #1e2230;
-  --text-primary: #eee;
-  --text-muted: #aaa;
+  --sidebar-active-text: #000000;
+
   --input-bg: #2a2e42;
-  --input-text: #ddd;
+  --input-text: #dddddd;
   --input-border: #444c6e;
+
   --button-bg: #28a745;
-  --button-text: #fff;
+  --button-text: #ffffff;
   --button-hover-bg: #1e7e34;
-  --card-bg: #1e2230;
-  --text-primary: #eee;
-  --text-muted: #aaa;
+
   --table-bg: #2a2e42;
   --table-header-bg: #343a54;
   --table-border-color: #444c6e;
+
   --badge-active-bg: #28a745;
   --badge-inactive-bg: #6c757d;
-  --badge-text-color: #fff;
+  --badge-text-color: #ffffff;
 
-  /* Navbar colors in dark */
-  --navbar-bg: #5a0000;           /* dark red */
+  --navbar-bg: #5a0000;
   --navbar-text: #ffcccc;
   --navbar-hover: #ff6666;
+
+  --primary-color: #0dcaf0;
+  --secondary-color: #adb5bd;
+}
+
+
+
+*,*::after,*::before{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    
+    
+    
+}
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+    
+  }
+
+
+a{
+    cursor: pointer;
+    text-decoration: none;
+}
+ul{
+    list-style: none;
+}
+a{
+  cursor: pointer;
+  text-decoration: none;
+}
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  /*background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDJmbzFwOWxvNTFjeTVrdXozZmpjMmxhN3NwenJzNzZ1NjRuaGNjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NzSUEgbTWB7TW/giphy.gif'); 
+  background-size:fit;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center;*/
+  padding-top: 70px;
 }

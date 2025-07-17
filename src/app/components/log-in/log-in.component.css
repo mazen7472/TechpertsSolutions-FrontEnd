@@ -1,6 +1,6 @@
 /* Wrapper adjustments */
 .logIngSystem {
-  background-color: var(--bg-color);
+  
   color: var(--text-primary);
   padding: 4rem 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -32,7 +32,7 @@
 .logIngSystem .form-control {
   padding: 0.75rem 1rem;
   border: 1px solid var(--border-color);
-  background-color: var(--bg-color);
+ 
   color: var(--text-primary);
   border-radius: 6px;
   transition: border-color 0.3s ease, background-color 0.3s ease;

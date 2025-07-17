@@ -1,1 +1,65 @@
-<p>blog works!</p>
+<div class="container">
+  <!-- Headline Section -->
+  <section class="headline-section text-center my-5" style="color: var(--text-primary);">
+    <h1>Latest Computer Hardware</h1>
+    <p style="color: var(--text-secondary);">
+      Discover the newest parts, benchmarks, and expert reviews to build your ultimate setup.
+    </p>
+    <button class="btn mt-3" style="background-color: var(--btn-success-bg); color: var(--button-text);">
+      Explore Articles
+    </button>
+  </section>
+
+  <!-- Featured Articles -->
+  <section>
+    <h2 style="color: var(--text-primary);">Featured Articles</h2>
+    <div class="row">
+      @for (article of featuredArticles; track article.title) {
+        <div class="col-md-4">
+          <div class="card featured-article mb-4" style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--card-border);">
+            <img [src]="article.img" class="card-img-top" [alt]="article.title" />
+            <div class="card-body">
+              <p class="text-muted" style="color: var(--text-muted);">{{ article.date }}</p>
+              <h5 class="card-title">{{ article.title }}</h5>
+              <p class="card-text">{{ article.description }}</p>
+              <a href="#" class="btn btn-sm" style="border-color: var(--link-color); color: var(--link-color);">Read More</a>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <p class="text-muted ml-3" style="color: var(--text-muted);">No articles available at the moment.</p>
+      }
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="mt-5">
+    <h2 style="color: var(--text-primary);">Browse by Category</h2>
+    <div class="row text-center">
+      @for (category of categories; track category.title) {
+        <div class="col-md-3">
+          <div class="card category-card p-3 mb-4" style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--card-border);">
+            <h5>{{ category.title }}</h5>
+            <p>{{ category.description }}</p>
+          </div>
+        </div>
+      } @empty {
+        <p class="text-muted ml-3" style="color: var(--text-muted);">No categories available.</p>
+      }
+    </div>
+  </section>
+
+  <!-- Subscription Section -->
+  <section class="subscribe-section mt-5 text-center" style="display: none; color: var(--text-primary);">
+    <h2>Stay Updated</h2>
+    <form class="form-inline justify-content-center mt-3">
+      <input type="email" class="form-control mr-2"
+             style="background-color: var(--input-bg); color: var(--input-text); border-color: var(--input-border);"
+             placeholder="Enter your email" />
+      <button type="submit" class="btn btn-primary"
+              style="background-color: var(--btn-success-bg); color: var(--button-text);">
+        Subscribe
+      </button>
+    </form>
+  </section>
+</div>
