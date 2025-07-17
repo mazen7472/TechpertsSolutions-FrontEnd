@@ -2,10 +2,9 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
-
+import { AuthService } from '../../Services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoginPayload } from '../../Interfaces/auth';
-import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-log-in',
@@ -53,11 +52,13 @@ export class LogInComponent {
           const customerId = res.data?.customerId;
           const userName = res.data?.userName;
 
-          if (token && customerId) {
+          if (token) {
+            console.log(token);
+            
             if (typeof window !== 'undefined' && window.localStorage) {
               localStorage.setItem('userToken', token);
-              localStorage.setItem('customerId', customerId);
-              localStorage.setItem('userName', userName)
+              if(customerId) localStorage.setItem('customerId', customerId);
+              if(userName) localStorage.setItem('userName', userName)
             }
 
             this._authService.userData = { userName, customerId };

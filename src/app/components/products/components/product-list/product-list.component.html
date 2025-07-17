@@ -3,7 +3,7 @@
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     @for (product of pagedProducts; track $index) {
-        <app-product-item [productC]="product" ></app-product-item>
+        <app-product-item [productC]="product" (addToCart)="handleAddToCart($event)"></app-product-item>
     }
   </div>
 

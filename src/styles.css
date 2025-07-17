@@ -1,5 +1,50 @@
-/* === Default (Light) Theme === */
+/* === Default (Dark) Theme === */
 :root {
+  --bg-color: #121621;
+  --content-bg: #121621;
+  --card-bg: #1e2230;
+  --sidebar-bg: #1e2230;
+
+  --text-primary: #eeeeee;
+  --text-secondary: #aaaaaa;
+  --text-muted: #aaaaaa;
+  --sidebar-text: #dddddd;
+
+  --accent-red: #ff4c4c;
+  --accent-blue: #4ca6ff;
+
+  --border-color: rgba(255, 255, 255, 0.15);
+  --shadow-color: rgba(255, 255, 255, 0.2);
+
+  --sidebar-active-bg: #4ca6ff;
+  --sidebar-active-text: #000000;
+
+  --input-bg: #2a2e42;
+  --input-text: #dddddd;
+  --input-border: #444c6e;
+
+  --button-bg: #28a745;
+  --button-text: #ffffff;
+  --button-hover-bg: #1e7e34;
+
+  --table-bg: #2a2e42;
+  --table-header-bg: #343a54;
+  --table-border-color: #444c6e;
+
+  --badge-active-bg: #28a745;
+  --badge-inactive-bg: #6c757d;
+  --badge-text-color: #ffffff;
+
+  --navbar-bg: #5a0000;
+  --navbar-text: #ffcccc;
+  --navbar-hover: #ff6666;
+
+  --primary-color: #0dcaf0;
+  --secondary-color: #adb5bd;
+}
+
+/* === Light Theme === */
+body.dark-theme {
   /* Layout & Backgrounds */
   --bg-color: #f0f0f0;
   --content-bg: #ffffff;
@@ -52,51 +97,6 @@
   /* Primary/Secondary (optional) */
   --primary-color: #0d6efd;
   --secondary-color: #6c757d;
-}
-
-/* === Dark Theme === */
-body.dark-theme {
-  --bg-color: #121621;
-  --content-bg: #121621;
-  --card-bg: #1e2230;
-  --sidebar-bg: #1e2230;
-
-  --text-primary: #eeeeee;
-  --text-secondary: #aaaaaa;
-  --text-muted: #aaaaaa;
-  --sidebar-text: #dddddd;
-
-  --accent-red: #ff4c4c;
-  --accent-blue: #4ca6ff;
-
-  --border-color: rgba(255, 255, 255, 0.15);
-  --shadow-color: rgba(255, 255, 255, 0.2);
-
-  --sidebar-active-bg: #4ca6ff;
-  --sidebar-active-text: #000000;
-
-  --input-bg: #2a2e42;
-  --input-text: #dddddd;
-  --input-border: #444c6e;
-
-  --button-bg: #28a745;
-  --button-text: #ffffff;
-  --button-hover-bg: #1e7e34;
-
-  --table-bg: #2a2e42;
-  --table-header-bg: #343a54;
-  --table-border-color: #444c6e;
-
-  --badge-active-bg: #28a745;
-  --badge-inactive-bg: #6c757d;
-  --badge-text-color: #ffffff;
-
-  --navbar-bg: #5a0000;
-  --navbar-text: #ffcccc;
-  --navbar-hover: #ff6666;
-
-  --primary-color: #0dcaf0;
-  --secondary-color: #adb5bd;
 }
 
 

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ProductItemComponent } from "../product-item/product-item.component";
 import { NgFor } from '@angular/common';
 import { IProduct } from '../../../../Interfaces/iproduct';
 import { ProductService } from '../../../../Services/product.service';
+import { CartService } from '../../../../Services/cart.service';
 
   @Component({
     selector: 'app-product-list',
@@ -15,12 +16,14 @@ import { ProductService } from '../../../../Services/product.service';
     pagedProducts: IProduct[] = [];  
     products: IProduct[] = [];
     currentPage = 1;
-    pageSize = 10;
-    totalPages = 0;
+    pageSize = 6;
+    totalPages = 2;
     sortBy: string = 'name';
     sortDesc: boolean = false;
     
-    constructor(private productService: ProductService) {}
+    @Output() addId! : string 
+
+    constructor(private productService: ProductService, private cartService: CartService) {}
 
     ngOnInit() {
       this.loadProducts();
@@ -33,7 +36,7 @@ import { ProductService } from '../../../../Services/product.service';
         console.log(response); // Check the full response
         const pagedData = response.data;
 
-        this.products = pagedData.items;
+        this.pagedProducts = pagedData.items;
         this.totalPages = pagedData.totalPages;
       },
       error: (err) => {
@@ -53,5 +56,16 @@ get totalPagesArray(): number[] {
   return Array(this.totalPages).fill(0).map((_, i) => i + 1);
 }
 
+handleAddToCart(productId: string) {
+  this.cartService.addItem({ productId, quantity: 1 }).subscribe({
+  next: (res) => {
+    console.log('✅ Added to cart:', res);
+  },
+  error: (err) => {
+    console.error('❌ Failed to add to cart:', err);
+  }
+});
+
+}
 
   }

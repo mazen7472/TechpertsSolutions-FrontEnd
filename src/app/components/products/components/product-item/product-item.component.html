@@ -1,21 +1,37 @@
-<div class="col">
-      <div class="card h-100 shadow-sm">
-        <!-- Use a placeholder image or you can add imageUrl if you want -->
-        <img src="https://picsum.photos/seed/{{ productC.id }}/200/150" class="card-img-top" alt="{{ productC.name }}">
+  <div class="col">
+    <div class="card h-100 shadow-sm border-0 rounded-4 overflow-hidden">
+      <img
+        src="https://picsum.photos/seed/{{ productC.id }}/300/200"
+        class="card-img-top object-fit-cover"
+        alt="{{ productC.name }}"
+      >
 
-        <div class="card-body d-flex flex-column">
-          <h5 class="card-title">{{ productC.name }}</h5>
-          <p class="card-text flex-grow-1">{{ productC.description }}</p>
-          @if (productC.title) {
-            <p><small class="text-muted">{{ productC.title }}</small></p>
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title fw-semibold">{{ productC.name }}</h5>
+
+        <p class="card-text text-muted small mb-2">{{ productC.description }}</p>
+
+        @if (productC.title) {
+          <p class="text-muted mb-2"><small>{{ productC.title }}</small></p>
+        }
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <span class="fw-bold text-primary fs-5">${{ productC.price }}</span>
+          @if (productC.link) {
+            <a [href]="productC.link" target="_blank" class="btn btn-sm btn-outline-primary">
+              View
+            </a>
           }
-          <div class="d-flex justify-content-between align-items-center">
-            <span class="fw-bold text-primary">${{ productC.price }}</span>
-            @if (productC.link) {
-                <a [href]="productC.link" target="_blank" class="btn btn-sm btn-outline-primary">View</a>
-            }
-          </div>
-          <p class="mt-2"><small class="text-secondary">Category: {{ productC.category }}</small></p>
         </div>
+
+        <button class="btn btn-sm btn-success w-100 mt-auto" (click)="onAddToCart()">
+  <i class="bi bi-cart-plus me-2"></i> Add to Cart
+</button>
+
+
+        <p class="mt-3 mb-0 text-secondary text-end small">
+          Category: {{ productC.category || 'Uncategorized' }}
+        </p>
       </div>
     </div>
+  </div>

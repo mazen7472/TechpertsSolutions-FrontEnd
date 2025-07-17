@@ -3,6 +3,7 @@ import { Component, HostListener, inject, OnInit, PLATFORM_ID } from '@angular/c
 import { Observable } from 'rxjs';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -24,8 +25,9 @@ export class NavBarComponent implements OnInit {
   cartCount = 0;
 
 
-    private _platformId = inject(PLATFORM_ID);
+  private _platformId = inject(PLATFORM_ID);
   private _isBrowser = isPlatformBrowser(this._platformId);
+  public _authService = inject(AuthService)
 
   constructor(private cartService: CartService) {}
 

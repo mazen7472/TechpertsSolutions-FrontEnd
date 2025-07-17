@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  private readonly _FormBuilder = inject(FormBuilder);
+ private readonly _FormBuilder = inject(FormBuilder);
   private readonly _router = inject(Router);
   private readonly _authService = inject(AuthService)
 
