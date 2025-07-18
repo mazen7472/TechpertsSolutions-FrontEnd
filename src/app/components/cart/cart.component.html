@@ -10,13 +10,15 @@
     @for (item of CartItems; track $index) {
       <div class="cart-item row g-3 align-items-center mb-3 border-bottom pb-3">
       <!-- Image -->
-      <div class="col-3 col-md-2">
+      @if (item.product?.imageUrl) {
+        <div class="col-3 col-md-2">
         <img
           [src]="item.product?.imageUrl || 'assets/placeholder.jpg'"
           class="img-fluid rounded"
           [alt]="item.product?.name || 'Product Image'"
         />
       </div>
+      }
 
       <!-- Product Info -->
       <div class="col-9 col-md-10">

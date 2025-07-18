@@ -32,6 +32,7 @@ export class NavBarComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
+    this.cartService.initializeCartState();
     this.cartItemCount$ = this.cartService.itemCount$;
     this.cartTotalPrice$ = this.cartService.totalPrice$;
     this.animateCart$ = this.cartService.animateCart$;
