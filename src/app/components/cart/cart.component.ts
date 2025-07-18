@@ -23,8 +23,7 @@ export class CartComponent implements OnInit {
   this.CartService.getCart().subscribe({
     next: (res: any) => {
       const rawItems = res?.data?.cartItems || [];
-      console.log(res);
-      
+
       this.CartItems = rawItems.map((item: any) => ({
         productId: item.productId,
         quantity: item.quantity,
@@ -33,14 +32,19 @@ export class CartComponent implements OnInit {
           name: item.productName,
           price: item.price,
           imageUrl: item.imageUrl,
+          discountPrice: item.discountPrice
         }
       }));
+
+      // ✅ Push updated state to CartService
+      this.CartService.updateCartState(this.CartItems);
     },
-    error: (err:any) => {
+    error: (err: any) => {
       console.log(err);
     },
   });
 }
+  
 
 
   addToCart(productId: string, quantity: number): void {
