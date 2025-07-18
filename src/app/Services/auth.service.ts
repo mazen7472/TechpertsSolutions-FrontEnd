@@ -1,10 +1,10 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Environment } from '../Environment/environment';
 import { jwtDecode } from 'jwt-decode';
-
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +12,22 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   private readonly _HttpClient = inject(HttpClient);
   private readonly _Router = inject(Router);
+  private readonly _platformId = inject(PLATFORM_ID);
+  private readonly _isBrowser = isPlatformBrowser(this._platformId);
 
   userData: any = null;
   customerId: string | null = null;
   userName: string | null = null;
+
+  private isLoggedInSubject = new BehaviorSubject<boolean>(this._isBrowser ? this.hasToken() : false);
+
+  get isLoggedIn$(): Observable<boolean> {
+    return this.isLoggedInSubject.asObservable();
+  }
+
+  private hasToken(): boolean {
+    return this._isBrowser && !!localStorage.getItem('userToken');
+  }
 
   setRegisterForm(data: object): Observable<any> {
     return this._HttpClient.post(`${Environment.baseUrl}/Authentication/register`, data);
@@ -26,32 +38,38 @@ export class AuthService {
   }
 
   saveUserData(): void {
+    if (!this._isBrowser) return;
+
     const token = localStorage.getItem('userToken');
     if (token) {
       try {
         this.userData = jwtDecode(token);
         this.customerId = localStorage.getItem('userId');
         this.userName = localStorage.getItem('userName');
-
+        this.isLoggedInSubject.next(true);
       } catch (err) {
         console.error('Invalid token:', err);
-        this.userData = null;
-        this.customerId = null;
-        this.userName = null;
-        this.logOut();
+        this.clearUserData();
       }
+    } else {
+      this.clearUserData();
     }
   }
 
   logOut(): void {
+    this.clearUserData();
+    this._Router.navigate(['/login']);
+  }
+
+  private clearUserData(): void {
+    if (!this._isBrowser) return;
+
     localStorage.removeItem('userToken');
     localStorage.removeItem('userId');
-    localStorage.removeItem('userName')
+    localStorage.removeItem('userName');
     this.userData = null;
     this.customerId = null;
     this.userName = null;
-    this._Router.navigate(['/login']);
+    this.isLoggedInSubject.next(false);
   }
 }
-
-

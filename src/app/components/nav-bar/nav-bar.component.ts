@@ -31,22 +31,24 @@ export class NavBarComponent implements OnInit {
 
   constructor(private cartService: CartService) {}
 
-  ngOnInit(): void {
-    this.cartService.initializeCartState();
-    this.cartItemCount$ = this.cartService.itemCount$;
-    this.cartTotalPrice$ = this.cartService.totalPrice$;
-    this.animateCart$ = this.cartService.animateCart$;
-    if (this._isBrowser) {
-      // Only access localStorage if running in the browser
-      this.isLogedIn = !!localStorage.getItem('userToken');
-      this.userName = localStorage.getItem('userName')
+ ngOnInit(): void {
+  this.cartService.initializeCartState();
+  this.cartItemCount$ = this.cartService.itemCount$;
+  this.cartTotalPrice$ = this.cartService.totalPrice$;
+  this.animateCart$ = this.cartService.animateCart$;
 
+  if (this._isBrowser) {
+    this._authService.isLoggedIn$.subscribe((status) => {
+      this.isLogedIn = status;
+      this.userName = localStorage.getItem('userName');
+    });
 
-      this.cartService.getCart().subscribe(items => {
-        this.cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
-      });
-    }
+    this.cartService.getCart().subscribe(items => {
+      this.cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
+    });
   }
+}
+
 
   toggleDarkMode(): void {
     this.isDarkMode = !this.isDarkMode;
