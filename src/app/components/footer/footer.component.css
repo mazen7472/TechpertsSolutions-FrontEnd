@@ -1,5 +1,5 @@
 .footer-bg {
-  background-color: var(--card-bg); /* will adapt to light or dark */
+  background-color: var(--bg-color); /* will adapt to light or dark */
   color: var(--text-primary);
   transition: background-color 0.3s ease, color 0.3s ease;
 }

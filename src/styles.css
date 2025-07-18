@@ -4,9 +4,10 @@
   --content-bg: #121621;
   --card-bg: #1e2230;
   --sidebar-bg: #1e2230;
+    --bg-image:url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDJmbzFwOWxvNTFjeTVrdXozZmpjMmxhN3NwenJzNzZ1NjRuaGNjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NzSUEgbTWB7TW/giphy.gif');
 
   --text-primary: #eeeeee;
-  --text-secondary: #aaaaaa;
+  --text-secondary: #d6d6d6;
   --text-muted: #aaaaaa;
   --sidebar-text: #dddddd;
 
@@ -46,10 +47,11 @@
 /* === Light Theme === */
 body.dark-theme {
   /* Layout & Backgrounds */
-  --bg-color: #f0f0f0;
-  --content-bg: #ffffff;
+  --bg-color: #faf5f0;
+  --content-bg: #fdf6ec;
   --card-bg: #ffffff;
-  --sidebar-bg: #f8f9fa;
+  --sidebar-bg: #f7f0df;
+  --bg-image:url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXNrOGFpYzdkMnR5aWY2OXhnOHppNm44dDd4cHBhemlyZmZ2enV0YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/h7uTwqEHysbd2lhyDP/giphy.gif');
 
   /* Typography */
   --text-primary: #222222;
@@ -127,10 +129,11 @@ a{
   cursor: pointer;
   text-decoration: none;
 }
+
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
-  background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDJmbzFwOWxvNTFjeTVrdXozZmpjMmxhN3NwenJzNzZ1NjRuaGNjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NzSUEgbTWB7TW/giphy.gif'); 
+  background-image:var(--bg-image);
   background-size:fit;
   background-repeat: repeat;
   background-attachment: fixed;
