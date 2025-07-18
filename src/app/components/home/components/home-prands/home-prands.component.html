@@ -1,1 +1,24 @@
-<p>home-prands works!</p>
+<div class="brand-slider-container py-5">
+  <h2 class="text-center mb-4">Top PC Hardware Brands</h2>
+
+  <div class="brand-slider" (mouseenter)="paused = true" (mouseleave)="paused = false">
+    <div class="brand-track" [class.paused]="paused">
+      @for (brand of brands.concat(brands); track $index) {
+        <div class="brand-card">
+        <div class="card text-center shadow-sm">
+          <div class="card-body p-3">
+            <img
+              [src]="brand.imageUrl"
+              [alt]="brand.name"
+              class="img-fluid brand-logo"
+            />
+          </div>
+          <div class="card-footer bg-white border-0">
+            <h6 class="mb-0">{{ brand.name }}</h6>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

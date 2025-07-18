@@ -1,0 +1,61 @@
+/* Main container */
+.brand-slider-container {
+  overflow: hidden;
+  position: relative;
+}
+
+/* Slider */
+.brand-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Track that scrolls */
+.brand-track {
+  display: flex;
+  gap: 1rem;
+  width: fit-content;
+  animation: scrollBrands 20s linear infinite;
+}
+
+.brand-track.paused {
+  animation-play-state: paused;
+}
+
+/* Card styling */
+.brand-card {
+  min-width: 180px;
+  flex: 0 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.brand-card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.card {
+  border-radius: 0.5rem;
+}
+
+.brand-logo {
+  max-height: 60px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Keyframes for scrolling */
+@keyframes scrollBrands {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@media (max-width: 576px) {
+  .brand-card {
+    min-width: 140px;
+  }
+}

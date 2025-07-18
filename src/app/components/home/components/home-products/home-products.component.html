@@ -1,1 +1,57 @@
-<p>home-products works!</p>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+
+    <div *ngIf="loading" class="text-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    @if (error) {
+    <div class="alert alert-danger text-center">
+        {{ error }}
+    </div>
+    }@else if (!loading && !error) {
+    <div class="row">
+        <div class="col-md-6 col-lg-4 col-xl-3 mb-4" *ngFor="let product of products">
+            <div class="card h-100">
+                <img [src]="product.imageUrl || 'https://via.placeholder.com/300x200'" class="card-img-top"
+                    alt="{{ product.name }}" />
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text text-muted mb-1" *ngIf="product.categoryName">
+                        Category: {{ product.categoryName }}
+                    </p>
+                    <p class="card-text text-truncate" *ngIf="product.description">
+                        {{ product.description }}
+                    </p>
+
+                    <div class="mt-auto">
+                        <p class="fw-bold text-primary mb-1">
+                            <span *ngIf="product.discountPrice && product.discountPrice < product.price">
+                                <del class="text-muted me-2">{{ product.price | currency }}</del>
+                                {{ product.discountPrice | currency }}
+                            </span>
+                            <span *ngIf="!product.discountPrice || product.discountPrice >= product.price">
+                                {{ product.price | currency }}
+                            </span>
+                        </p>
+                        <span class="badge bg-success" *ngIf="product.status === 'Available'">Available</span>
+                        <span class="badge bg-danger" *ngIf="product.status === 'OutOfStock'">Out of Stock</span>
+
+                        <a [href]="product.link || '#'" class="btn btn-outline-primary btn-sm mt-2 w-100"
+                            [class.disabled]="!product.link">View Product</a>
+                        <!-- Inside the .card-body, after "View Product" button -->
+                        <button class="btn btn-primary btn-sm mt-2 w-100" (click)="addToCart(product)">
+                            Add to Cart
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+
+</div>
