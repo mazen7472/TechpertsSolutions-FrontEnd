@@ -1,204 +1,132 @@
- .contact{
-    margin-bottom: 2rem;
-    background-color: var(--bg-color);
-    border-radius: 20px;
-    
-  }
-  .contact-container{
-    padding: 2.5rem 1rem;
-    width:95%;
-    margin: auto;
-   
-  }
-  .contact-title{
-      padding-top: 2rem;
-      margin-bottom: 2.5rem;
-     
-  }
-  .contact-title h2{
-      text-align: center;
-      font-family: 'Inter';
-      font-size: 0.875rem;
-      color: #7f7f90;
-      font-weight: 400;
-  }
-  .contact-title p{
-      text-align: center;
-      font-family: 'Amatic',sans-serif;
-      font-size: 3.125rem;
-      color: rgb(33,37,41);
-  }
-  .contact-title span{
-      color: rgb(206,18,18);
+
+
+
+.contact .container {
+  background-color: rgba(255, 255, 255, 0.03); /* subtle glass blur */
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 0 25px var(--shadow-color);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+  position: relative;
+  color: var(--text-primary);
+}
+
+.contact .lead {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Google Map Styling */
+.contact iframe {
+  border: none;
+  width: 100%;
+  height: 350px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px var(--shadow-color);
+  margin-bottom: 2rem;
+}
+
+/* Info Cards */
+.contact .d-flex {
+  background-color: var(--input-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 12px var(--shadow-color);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  color: var(--text-primary);
+}
+
+.contact .d-flex:hover {
+  transform: translateY(-3px);
+  background-color: var(--card-bg);
+}
+
+.contact .d-flex i {
+  color: var(--primary-color);
+}
+
+/* Floating Label Form */
+form {
+  position: relative;
+  z-index: 2;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.floating-label input,
+.floating-label textarea {
+  width: 100%;
+  padding: 1rem 1rem 0.5rem;
+  font-size: 1rem;
+  background-color: var(--input-bg);
+  border: 2px solid var(--input-border);
+  border-radius: 10px;
+  color: var(--input-text);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-label label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  pointer-events: none;
+  transition: 0.2s ease all;
+  background: var(--input-bg);
+  padding: 0 0.25rem;
+}
+
+.floating-label input:focus + label,
+.floating-label textarea:focus + label,
+.floating-label input:not(:placeholder-shown) + label,
+.floating-label textarea:not(:placeholder-shown) + label {
+  top: -0.6rem;
+  left: 0.8rem;
+  font-size: 0.75rem;
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.floating-label input:focus,
+.floating-label textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 8px rgba(13, 202, 240, 0.15);
+  outline: none;
+}
+
+/* Submit Button */
+form button {
+  border-radius: 50px;
+  padding: 0.75rem 2.5rem;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+}
+
+form button:hover {
+  background-color: var(--button-hover-bg);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact {
+    padding: 2rem 1rem;
   }
 
-  iframe{
-    border: 0;
-    width: 100%;
-    height: 60%;
-    margin-bottom: 2rem;
-  }
-  .contact-info{
-    display: flex;
-    flex-wrap: wrap;
-    gap:0.9375rem;
-  }
-  .info-item{
-    width: calc(calc(100% - (0.9375rem)) / 2);
-    display: flex;
-    align-items: center;
-    padding: 1.5625rem;
-    background-color: rgb(245,245,245);
-    
+  .contact .container {
+    padding: 2rem 1rem;
   }
 
-  .info-icon{
-    width:3.125rem;
-    height: 3.125rem;
-    border-radius: 50%;
-    background-color: rgb(206,18,18);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 0.625rem;
-  }
-  .info-icon i{
-    font-size: 1.125rem;
-    color: white;
-  }
-
-  .info-text h3{
-    font-family: 'Inter';
-    font-size: 1.25rem;
-    color: rgb(125,125,125);
-    font-weight: 700;
-    margin-bottom: 0.3125rem;
-  }
-  
-  .info-text a , .info-text p{
-    
-    font-family: 'Inter';
-    color: rgb(33, 37, 41);
-  }
-  .inputs{
-    width: 100%;
-    gap: 0.9375rem;
-    padding: 1.25rem;
-    display: flex;
+  .contact .d-flex {
     flex-direction: column;
-    align-content: space-between;
-    box-shadow: 0 0 1.875rem rgba(0, 0, 0, 0.078);
-    margin-top: 1.5rem;
-  }
-  
-
-
-.inputs-items .group{
-  padding-bottom: 0.2rem;
-  display: flex;
-  align-items: center;
-  gap:0.9375rem
-}
-.input-name , .input-email{
-    width: 100%;
-}
-form :is(input , textarea){
-    width: 100%;
-    padding: 0.9375rem 0.9375rem;
-    margin-bottom: 0.8rem;
-    font-family: 'Open-Sans',sans-serif;
-    line-height: 1.25rem;
-    border: 0.125rem solid rgb(232,227,227);
-    color: rgb(33, 37, 41);
-    resize: vertical;
-    transition: border-color 0.5s ease;
-}
-form :is(input , textarea):focus{
-    outline: none;
-    border-color:rgb(206,18,18) ;
-}
-
-
- .inputs-items .input-subject{
-    padding-bottom: 0.2rem ;
-    display:flex;
-    align-items: center;
-    justify-content:left;
-    text-align: center;
-    
-} 
-.inputs-items .input-text{
-    padding-bottom: 0.2rem ;
-    display:flex;
-    align-items: center;
-    justify-content:left;
-    
-}
-
-
-.inputs-items .input-button{
-    display:flex;
-    align-items: center;
-    justify-content:center;
-   
-}
-.inputs-items .input-button button{
-    font-family: 'Open-Sans', sans-serif;
-    font-size: 0.9375rem;
-    background-color: rgb(206,18,18);
-    color: white;
-    border: none;
-    border-radius: 1.6875rem;
-    padding: 0.75rem 2.5rem;
-    margin-top: 1.5625rem;
-    cursor: pointer;
-    width: fit-content;
-    transition: background-color 0.5s ease;
-}
-.input-button button:hover{
-    background-color:rgb(230,20,20);
-
-}
-
-
-
-@media screen and (max-width: 1200px) {
-  .contact-container{
-    max-width: 60rem;
-  }
-}
-@media screen and (max-width: 992px) {
-  .contact-container{
-    max-width: 45rem;
-  }
-  .inputs-items .group{
-    display: block;
-  }
-  .info-icon{
-    width:3.125rem;
-    height: 3.125rem;
-}
-.icon-width{
-  width:4.125rem;
-  
-}
-}
-
-@media screen and (max-width: 768px) {
-  .contact-container{
-    max-width: 33.75rem;
-  }
-  .contact-info> div {
-    width: 100%;
-  }
-  .icon-width{
-    width:3.125rem;
-    
-  }
-}
-@media screen and (max-width: 477px){
-  .icon-width{
-    width:3.6rem;
-    
+    align-items: flex-start;
   }
 }

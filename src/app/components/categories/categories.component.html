@@ -1,11 +1,15 @@
 <div class="container py-4">
-  <h2 class="text-center mb-4 category-title">Choose a Category</h2>
+  <h2 class="text-center mb-4 section-title">Choose a Category</h2>
   <div class="row">
     @for (category of categories; track category.id) {
       <div class="col-md-4 mb-4">
         <div class="category-card card h-100">
           <div class="card-body text-center">
-            <i class="bi bi-box-seam fs-1 category-icon"></i>
+            <img 
+              [src]="category.imageUrl || 'assets/images/categories/default.png'" 
+              [alt]="category.name"
+              class="category-image mb-3"
+            />
             <h5 class="card-title mt-3">{{ category.name }}</h5>
             <button class="btn btn-outline-info mt-2" 
                     (click)="navigateToCategory(category.id)">

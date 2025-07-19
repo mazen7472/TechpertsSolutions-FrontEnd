@@ -1,6 +1,6 @@
 <div class="register-wrapper">
   <div class="register-container">
-    <h1 class="register-title">Create Your Account</h1>
+    <h1 class="register-title text-primary">Create Your Account</h1>
     <form class="register-form" [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
       <div class="form-group">
         <label for="fullName">Full Name</label>
@@ -37,7 +37,7 @@
         <input type="text" id="phone" placeholder="Your phone number" formControlName="PhoneNumber" />
       </div>
 
-      <button type="submit" class="btn-submit">Sign Up</button>
+      <button type="submit" class="btn-submit text-primary">Sign Up</button>
 
       <p class="login-link">
         Already have an account?

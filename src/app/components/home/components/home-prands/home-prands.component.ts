@@ -10,15 +10,18 @@ import { Component } from '@angular/core';
 export class HomePrandsComponent {
   paused = false;
   brands = [
-    { name: 'ASUS', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6e/ASUS_Logo.svg' },
-    { name: 'MSI', imageUrl: 'https://upload.wikimedia.org/wikipedia/en/2/29/Msi_Logo.svg' },
-    { name: 'Gigabyte', imageUrl: 'https://upload.wikimedia.org/wikipedia/en/0/0b/Gigabyte_Technology_logo.svg' },
-    { name: 'Corsair', imageUrl: 'https://upload.wikimedia.org/wikipedia/en/3/35/Corsair_Logo.svg' },
-    { name: 'NVIDIA', imageUrl: 'https://upload.wikimedia.org/wikipedia/en/2/21/Nvidia_logo.svg' },
-    { name: 'AMD', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2e/AMD_Logo.svg' },
-    { name: 'Intel', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/c/c9/Intel-logo.svg' },
-    { name: 'Cooler Master', imageUrl: 'https://upload.wikimedia.org/wikipedia/en/e/ef/Cooler_Master_logo.svg' },
-    { name: 'NZXT', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5d/NZXT_logo.svg' },
-    { name: 'EVGA', imageUrl: 'https://upload.wikimedia.org/wikipedia/en/0/0a/EVGA_logo.svg' }
+    { name: 'ASUS', imageUrl: 'https://i.postimg.cc/pXd1rYVw/asus-1.png' },
+    { name: 'MSI', imageUrl: 'https://i.postimg.cc/7Z4v6Jc0/MSI-Logo-1.png' },
+    { name: 'Gigabyte', imageUrl: 'https://i.postimg.cc/NMHbmp2M/gigabyte.png' },
+    { name: 'NVIDIA', imageUrl: 'https://i.postimg.cc/d34Ycssg/nvidia-3.png' },
+    { name: 'AMD', imageUrl: 'https://i.postimg.cc/XJtjD7vL/amd.png' },
+    { name: 'Intel', imageUrl: 'https://i.postimg.cc/HLB1FW65/intel.png' },
+    { name: 'Cooler Master', imageUrl: 'https://i.postimg.cc/wjjCLYqj/cooler-master-logo-black-and-white-1.png' },
+    { name: 'hp', imageUrl: 'https://i.postimg.cc/cCcztXP3/hp.png' },
+    { name: 'Dell', imageUrl: 'https://i.postimg.cc/5NnGxKBd/dell.png' },
+    { name: 'Samsung', imageUrl: 'https://i.postimg.cc/d1grFy6T/samsung.png' },
+    { name: 'Logitech', imageUrl: 'https://i.postimg.cc/FzmF0FsB/logitech.png' },
+   
+    
   ];
 }

@@ -10,7 +10,7 @@
 }
 
 .about-img {
-  background-image: url('../../../assets/Images/about.jpg');
+  background-image: url('../../../assets/Images/Banner.png');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
@@ -47,7 +47,11 @@
 }
 
 .accordion-button::after {
-  filter: brightness(0.8);
+  filter: none !important; /* Remove Bootstrap default gray filter */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%230d6efd' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-size: 1rem;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 @media only screen and (min-width: 768px) {
@@ -59,4 +63,30 @@
   .about-img {
     background-position: center;
   }
+}
+
+.accordion-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem; /* Rounded corners */
+  margin-bottom: 1rem;
+  box-shadow: var(--box-shadow);
+  overflow: hidden; /* Ensures children respect the border radius */
+}
+
+.accordion-button {
+  border-radius: 0.75rem; /* Top corners */
+  transition: all 0.3s ease;
+}
+
+.accordion-button.collapsed {
+  border-radius: 0.75rem; /* Apply to collapsed state too */
+}
+
+.accordion-collapse {
+  border-top: 1px solid var(--border-color);
+}
+
+.accordion-item:last-child {
+  margin-bottom: 0;
 }

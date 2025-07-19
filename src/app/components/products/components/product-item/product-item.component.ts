@@ -1,11 +1,13 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular/core';
 import { IProduct } from '../../../../Interfaces/iproduct';
 import { CartItem, CartService } from '../../../../Services/cart.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-item',
   standalone: true,
-  imports: [],
+  imports: [CommonModule,RouterModule],
   templateUrl: './product-item.component.html',
   styleUrl: './product-item.component.css'
 })

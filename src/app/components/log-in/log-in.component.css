@@ -1,6 +1,5 @@
 /* Wrapper adjustments */
 .logIngSystem {
-  
   color: var(--text-primary);
   padding: 4rem 1rem;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -32,9 +31,10 @@
 .logIngSystem .form-control {
   padding: 0.75rem 1rem;
   border: 1px solid var(--border-color);
- 
+  background-color: var(--bg-color); /* ← إضافة لخلفية داكنة */
   color: var(--text-primary);
   border-radius: 6px;
+  font-size: 1rem;
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -51,9 +51,11 @@
 /* Button */
 .logIngSystem .btn-primary {
   background-color: var(--accent-red);
+  color: #fff;
   border: none;
   font-weight: bold;
   transition: background-color 0.3s ease;
+  border-radius: 6px;
 }
 
 .logIngSystem .btn-primary:hover {
@@ -62,7 +64,7 @@
 
 /* Link styling */
 .logIngSystem a.btn-link {
-  color: var(--accent-blue);
+  color: var(--text-primary);
   font-weight: 600;
   text-decoration: none;
 }
@@ -71,7 +73,7 @@
   color: var(--accent-red);
 }
 
-/* Error placeholder (optional visibility) */
+/* Error placeholder */
 .logIngSystem .text-danger {
   font-weight: 500;
   margin-bottom: 1rem;

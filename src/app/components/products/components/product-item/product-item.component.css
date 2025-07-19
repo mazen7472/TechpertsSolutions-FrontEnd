@@ -18,7 +18,8 @@
 }
 
 .text-muted {
-  color: var(--text-muted) !important;
+  --bs-text-opacity: 1;
+  color: rgba(0, 172, 100, 0.75) !important;
 }
 
 .btn-outline-primary {
@@ -29,4 +30,13 @@
 .btn-outline-primary:hover {
   background-color: var(--accent-blue);
   color: var(--button-text);
+}
+
+
+.card-img-top{
+  width: 100%;
+  height: auto;
+  object-fit: fit;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }

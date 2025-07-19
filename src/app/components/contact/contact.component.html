@@ -2,8 +2,10 @@
   <div class="container">
     <!-- Title -->
     <div class="text-center mb-5">
-      <h2 class="fw-bold">CONTACT</h2>
-      <p class="lead">Need Help? <span class="text-primary fw-semibold">Contact Us</span></p>
+      <h2 class="fw-bold section-title">CONTACT</h2>
+      <p class="lead">
+        Need Help? <span class="text-primary fw-semibold">Contact Us</span>
+      </p>
     </div>
 
     <!-- Map -->
@@ -19,55 +21,96 @@
 
     <div class="row g-4">
       <!-- Contact Info -->
-     <div class="col-lg-5">
-  <div class="d-flex mb-4">
-    <div class="me-3 fs-4 text-primary"><i class="fa-regular fa-map"></i></div>
-    <div>
-      <h5 class="fw-bold mb-1">Our Location</h5>
-      <p class="mb-0">We operate 100% online – wherever you are, we're just a click away.</p>
-    </div>
-  </div>
-  <div class="d-flex mb-4">
-    <div class="me-3 fs-4 text-primary"><i class="fa-regular fa-envelope"></i></div>
-    <div>
-      <h5 class="fw-bold mb-1">Email Us</h5>
-      <a href="mailto:support@techpertssolution.com" class="text-decoration-none" type="email">techpertssolution.com</a>
-    </div>
-  </div>
-  <div class="d-flex mb-4">
-    <div class="me-3 fs-4 text-primary"><i class="fa-solid fa-phone"></i></div>
-    <div>
-      <h5 class="fw-bold mb-1">Call Us</h5>
-      <a href="tel:+12155501234" class="text-decoration-none">+1 (215) 550-1234</a>
-    </div>
-  </div>
-  <div class="d-flex">
-    <div class="me-3 fs-4 text-primary"><i class="fa-solid fa-share-nodes"></i></div>
-    <div>
-      <h5 class="fw-bold mb-1">Support Hours</h5>
-      <p class="mb-0"><strong>Available:</strong> 24/7 Online<br><strong>Live Chat:</strong> Mon–Fri, 9AM – 6PM</p>
-    </div>
-  </div>
-</div>
+      <div class="col-lg-5">
+        <div class="d-flex mb-4">
+          <div class="me-3 fs-4 text-primary">
+            <i class="bi bi-geo-alt"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold mb-1">Our Location</h5>
+            <p class="mb-0">
+              We operate 100% online – wherever you are, we're just a click
+              away.
+            </p>
+          </div>
+        </div>
+        <div class="d-flex mb-4">
+          <div class="me-3 fs-4 text-primary">
+            <i class="bi bi-envelope"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold mb-1">Email Us</h5>
+            <a
+              href="mailto:support@techpertssolution.com"
+              class="text-decoration-none"
+              >techpertssolution.com</a
+            >
+          </div>
+        </div>
+        <div class="d-flex mb-4">
+          <div class="me-3 fs-4 text-primary">
+            <i class="bi bi-telephone"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold mb-1">Call Us</h5>
+            <a href="tel:+12155501234" class="text-decoration-none"
+              >+1 (215) 550-1234</a
+            >
+          </div>
+        </div>
+        <div class="d-flex">
+          <div class="me-3 fs-4 text-primary">
+            <i class="bi bi-clock-history"></i>
+          </div>
+          <div>
+            <h5 class="fw-bold mb-1">Support Hours</h5>
+            <p class="mb-0">
+              <strong>Available:</strong> 24/7 Online<br /><strong
+                >Live Chat:</strong
+              >
+              Mon–Fri, 9AM – 6PM
+            </p>
+          </div>
+        </div>
+      </div>
 
       <!-- Contact Form -->
       <div class="col-lg-7">
         <form>
-          <div class="row g-3">
+          <div class="row g-4">
             <div class="col-md-6">
-              <input type="text" class="form-control" placeholder="Your Name" name="name" id="userName" required />
+              <div class="form-group floating-label">
+                <input type="text" id="userName" name="name" required />
+                <label for="userName">Your Name</label>
+              </div>
             </div>
             <div class="col-md-6">
-              <input type="email" class="form-control" placeholder="Your Email" name="email" id="userEmail" required />
+              <div class="form-group floating-label">
+                <input type="email" id="userEmail" name="email" required />
+                <label for="userEmail">Your Email</label>
+              </div>
             </div>
             <div class="col-12">
-              <input type="text" class="form-control" placeholder="Subject" name="subject" id="userSubject" required />
+              <div class="form-group floating-label">
+                <input type="text" id="userSubject" name="subject" required />
+                <label for="userSubject">Subject</label>
+              </div>
             </div>
             <div class="col-12">
-              <textarea class="form-control" rows="6" placeholder="Message" name="message" id="userMessage" required></textarea>
+              <div class="form-group floating-label">
+                <textarea
+                  id="userMessage"
+                  name="message"
+                  rows="5"
+                  required
+                ></textarea>
+                <label for="userMessage">Message</label>
+              </div>
             </div>
             <div class="col-12 text-end">
-              <button type="submit" class="btn btn-primary px-4 py-2">Send Message</button>
+              <button type="submit" class="btn btn-primary px-4 py-2">
+                Send Message
+              </button>
             </div>
           </div>
         </form>

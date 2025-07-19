@@ -1,37 +1,63 @@
 <div class="container py-4">
-  <h3 class="mb-4">Products</h3>
+  <h3 class="mb-4 section-title">Products</h3>
 
+  <!-- Search + Sort Row -->
+  <div class="row mb-4 align-items-end g-3">
+    <!-- Search Bar -->
+    <div class="col-md-8">
+      <input
+        type="text"
+        class="form-control search-input"
+        placeholder="Search products by name..."
+        [(ngModel)]="searchQuery"
+        (input)="filterProducts()"
+      />
+    </div>
+
+    <!-- Sort Dropdown -->
+    <div class="col-md-4">
+      <select
+        class="form-select sort-select"
+        [(ngModel)]="sortOrder"
+        (change)="sortProducts()"
+      >
+        <option value="">Sort by</option>
+        <option value="low">Price: Low to High</option>
+        <option value="high">Price: High to Low</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Product Grid -->
   <div class="row row-cols-1 row-cols-md-3 g-4">
     @for (product of pagedProducts; track $index) {
-        <app-product-item [productC]="product" (addToCart)="handleAddToCart($event)"></app-product-item>
+      <app-product-item
+        [productC]="product"
+        (addToCart)="handleAddToCart($event)">
+      </app-product-item>
     }
   </div>
 
   <!-- Pagination -->
   <nav aria-label="Page navigation" class="mt-4">
-  <ul class="pagination justify-content-center">
-    <li class="page-item" [class.disabled]="currentPage === 1">
-      <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
-        Previous
-      </button>
-    </li>
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+          Previous
+        </button>
+      </li>
 
-    <li
-      class="page-item"
-      *ngFor="let page of totalPagesArray; let i = index"
-      [class.active]="currentPage === (i + 1)"
-    >
-      <button class="page-link" (click)="changePage(i + 1)">
-        {{ i + 1 }}
-      </button>
-    </li>
+      <li class="page-item" *ngFor="let page of totalPagesArray; let i = index" [class.active]="currentPage === (i + 1)">
+        <button class="page-link" (click)="changePage(i + 1)">
+          {{ i + 1 }}
+        </button>
+      </li>
 
-    <li class="page-item" [class.disabled]="currentPage === totalPages">
-      <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
-        Next
-      </button>
-    </li>
-  </ul>
-</nav>
-
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
 </div>

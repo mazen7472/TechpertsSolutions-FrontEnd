@@ -3,11 +3,13 @@ import { IProduct } from '../../../../Interfaces/iproduct';
 import { ProductService } from '../../../../Services/product.service';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../../../Services/cart.service';
+import { ProductItemComponent } from '../../../products/components/product-item/product-item.component';
+
 
 @Component({
   selector: 'app-home-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductItemComponent], 
   templateUrl: './home-products.component.html',
   styleUrl: './home-products.component.css'
 })
@@ -39,12 +41,12 @@ export class HomeProductsComponent {
     });
   }
 
-  addToCart(product: IProduct): void {
-    const cartItem = { productId: product.id, quantity: 1 };
+  onAddToCart(productId: string): void {
+    const cartItem = { productId, quantity: 1 };
     this.cartService.addItem(cartItem).subscribe({
       next: () => {
         this.cartService.updateCartState([cartItem]);
-        alert(`${product.name} added to cart`);
+        alert(`Product added to cart`);
       },
       error: (err) => {
         console.error(err);

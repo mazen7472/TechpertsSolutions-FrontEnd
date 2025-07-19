@@ -1,46 +1,79 @@
+<div class="container py-5">
+  <div class="row g-4 align-items-center justify-content-center">
+    
+    <!-- Image Column -->
+    <div class="col-lg-6 d-flex justify-content-center align-items-center">
+      <picture class="d-block w-100 w-md-75 w-lg-100 rounded-4 overflow-hidden shadow-lg text-center">
+        <img src="assets/Images/about.jpg" alt="Why Choose Us" class="img-fluid rounded-4">
+      </picture>
+    </div>
 
-<div class="container2">
-    <div class="row about">
-    <div class="col-md-6 col-sm-12">
-        <picture class="w-100 about-img">
-            <!-- <img class="w-100" src="../../../assets/Images/about.jpg" alt="about image"> -->
-        </picture>
+    <!-- Text + Accordion Column -->
+    <div class="col-lg-6">
+      <h2 class="text-center mb-3 fw-bold">Why You Choose Us</h2>
+      <p class="text-center fs-5 mb-4">
+        More than beautiful interiors — discover why clients love working with us.
+      </p>
+
+      <div class="accordion accordion-flush" id="accordionChooseUs">
+        <!-- Accordion Items (Same as before) -->
+        <!-- Professional Team -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+              <i class="bi bi-people-fill text-primary me-2"></i> Professional Team
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionChooseUs">
+            <div class="accordion-body">
+              Our team includes only the best decorators and designers with years of industry experience and passion.
+            </div>
+          </div>
+        </div>
+
+        <!-- Creative Ideas -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+              <i class="bi bi-lightbulb-fill text-warning me-2"></i> Creative Concepts
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionChooseUs">
+            <div class="accordion-body">
+              We craft original concepts tailored to your space — unique, stylish, and always functional.
+            </div>
+          </div>
+        </div>
+
+        <!-- Respect & Care -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+              <i class="bi bi-heart-fill text-danger me-2"></i> Built with Respect
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionChooseUs">
+            <div class="accordion-body">
+              We treat every project with care, ensuring honest communication and thoughtful design choices.
+            </div>
+          </div>
+        </div>
+
+        <!-- Affordable Pricing -->
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+              <i class="bi bi-cash-coin text-success me-2"></i> Affordable Pricing
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionChooseUs">
+            <div class="accordion-body">
+              We offer transparent, competitive pricing with no hidden costs — beauty and value go hand in hand.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 col-sm-12 py-3">
-            <h1 class="text-center">Why You Choose Us</h1>
-            <p class="text-justify text-secondary text-center fs-5">Besides great interior design, there are lots of reasons to choose Interia. Here are some of the most popular ones.</p>
-            <div class="accordion accordion-flush" id="accordionFlushExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                <i class="bi bi-people text-primary me-2 border-start border-bottom border-gray rounded-5 p-2"></i> Professional Team
-                </button>
-                </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body fs-5">Our team includes only the best decorators and interior designers in the industry.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                 <i class="bi bi-lightbulb text-primary me-2 border-end border-top border-gray rounded-5 p-2"></i> Unusual Ideas
-                </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body fs-5">Our designers generate various yet always original ideas that will surely fit your needs.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                <i class="bi bi-heart text-primary me-2 border-start border-bottom border-gray rounded-5 p-2"></i> Made With Recpect
-                </button>
-                </h2>
-                <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body fs-5">All our work is built around respect to our clients, great service, and creativity.</div>
-                </div>
-            </div>
-            </div>
-    </div>
-</div>
+
+  </div>
 </div>
