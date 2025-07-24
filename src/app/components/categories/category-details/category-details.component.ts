@@ -35,7 +35,7 @@ export class CategoryDetailsComponent {
       id: 'p1',
       name: 'Intel i7',
       price: 299,
-      discountPrice: 279, // example discounted price
+      discountPrice: 279,
       imageUrl: 'https://example.com/images/intel-i7.jpg',
       categoryName: 'Processors',
       subCategoryId: 'subcat-001',
