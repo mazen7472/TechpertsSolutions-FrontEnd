@@ -9,12 +9,14 @@ import { Router } from '@angular/router';
   styleUrl: './categories.component.css'
 })
 export class CategoriesComponent {
-  categories = [
-    { id: 'cpu', name: 'Processors', imageUrl: 'assets/Images/motherboard.png' },
-    { id: 'gpu', name: 'Graphics Cards', imageUrl: 'assets/Images/video-card-1.png' },
-    { id: 'motherboard', name: 'Motherboards', imageUrl: 'assets/Images/motherboard.png' },
-    // Add more categories with imageUrl
-  ];
+categories = [
+  { id: 'services', name: 'Services', imageUrl: 'assets/Images/Categories/customer-service-1.png' },
+  { id: 'cpu', name: 'Processors', imageUrl: 'assets/Images/Categories/processors.png' },
+  { id: 'motherboard', name: 'Motherboards', imageUrl: 'assets/Images/Categories/motherboard.png' },
+  { id: 'gpu', name: 'Graphics Cards', imageUrl: 'assets/Images/Categories/video-card.png' },
+  { id: 'laptop', name: 'Laptops', imageUrl: 'assets/Images/Categories/laptop.png' },
+  { id: 'ram', name: 'RAM', imageUrl: 'assets/Images/Categories/ram.png' }
+];
 
   constructor(private router: Router) {}
 

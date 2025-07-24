@@ -1,14 +1,36 @@
 <div class="container py-4">
-  <h2 class="text-center category-title mb-4">Products in "{{ categoryName }}"</h2>
+  <h2 class="text-center category-title mb-5">
+    Products in "<span class="highlighted">{{ categoryName }}</span>"
+  </h2>
+
   <div class="row">
     @for (product of products; track product.id) {
-      <div class="col-md-4 mb-4">
-        <div class="product-card card h-100">
-          <div class="card-body text-center">
-            <h5 class="product-name">{{ product.name }}</h5>
-            <p class="product-description mb-2">{{ product.description }}</p>
-            <span class="badge price-badge mb-3">${{ product.price }}</span>
-            <button class="btn product-button"
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div class="card product-card shadow-sm border-0 h-100">
+          <img [src]="product.imageUrl" class="card-img-top" alt="{{ product.name }}" />
+
+          <div class="card-body d-flex flex-column text-center">
+            <h5 class="product-name fw-bold">{{ product.name }}</h5>
+            <p class="product-description small  mb-2">{{ product.subCategoryName }}</p>
+
+            <div class="mb-3">
+              <span class="badge bg-primary me-2">${{ product.discountPrice }}</span>
+              <span *ngIf="product.discountPrice < product.price" class="text-decoration-line-through small">
+                ${{ product.price }}
+              </span>
+            </div>
+
+            <div class="mb-2">
+              <span 
+                class="badge" 
+                [class.bg-success]="product.status === 'Available'" 
+                [class.bg-danger]="product.status === 'OutOfStock'">
+                {{ product.status }}
+              </span>
+            </div>
+
+            <button class="btn btn-outline-primary mt-auto"
+                    [disabled]="product.status === 'OutOfStock'"
                     (click)="selectProduct(product)">
               Select Product
             </button>

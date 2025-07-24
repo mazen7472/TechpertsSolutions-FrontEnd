@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../../Interfaces/iproduct';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-category-details',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './category-details.component.html',
   styleUrl: './category-details.component.css'
 })
@@ -36,7 +37,7 @@ export class CategoryDetailsComponent {
       name: 'Intel i7',
       price: 299,
       discountPrice: 279,
-      imageUrl: 'https://example.com/images/intel-i7.jpg',
+      imageUrl: 'assets/Images/intel.webp',
       categoryName: 'Processors',
       subCategoryId: 'subcat-001',
       subCategoryName: 'CPU',
@@ -47,7 +48,7 @@ export class CategoryDetailsComponent {
       name: 'AMD Ryzen 9',
       price: 349,
       discountPrice: 329, // example discounted price
-      imageUrl: 'https://example.com/images/amd-ryzen9.jpg',
+      imageUrl: 'assets/Images/amdryzen9.png',
       categoryName: 'Processors',
       subCategoryId: 'subcat-001',
       subCategoryName: 'CPU',

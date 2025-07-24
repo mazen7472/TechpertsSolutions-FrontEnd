@@ -42,3 +42,33 @@
   background-color: var(--accent-blue);
   color: white;
 }
+
+.category-title {
+  font-size: 2rem;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.highlighted {
+  color: var(--accent-blue);
+  font-weight: 600;
+}
+
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  max-height: 180px;
+  object-fit: contain;
+  padding: 1rem;
+  background-color: var(--card-bg, #f9f9f9);
+}
