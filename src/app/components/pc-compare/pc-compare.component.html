@@ -1,0 +1,90 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-5">Compare PC Parts</h2>
+
+  <!-- Two-column selection layout -->
+  <div class="row">
+    <!-- Column 1 -->
+    <div class="col-md-6">
+      <h5>Select Category</h5>
+      <select class="form-select mb-3" [(ngModel)]="selectedCategory1" (change)="onCategoryChange(1)">
+        <option value="">-- Choose Category --</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+
+      <h5>Select Product</h5>
+      <select
+  class="form-select mb-3"
+  [disabled]="!selectedCategory1"
+  (change)="onProductSelect(1, $event)"
+>
+
+
+        <option value="">-- Choose Product --</option>
+        <option *ngFor="let product of filteredProducts1" [value]="product.id">{{ product.name }}</option>
+      </select>
+
+      <div *ngIf="selectedProduct1" class="card p-3">
+        <img [src]="selectedProduct1.imageUrl" class="img-fluid mb-2" />
+        <h6>{{ selectedProduct1.name }}</h6>
+        <p>{{ selectedProduct1.description }}</p>
+      </div>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="col-md-6">
+      <h5>Select Category</h5>
+      <select class="form-select mb-3" [(ngModel)]="selectedCategory2" (change)="onCategoryChange(2)">
+        <option value="">-- Choose Category --</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+
+      <h5>Select Product</h5>
+      <select
+  class="form-select mb-3"
+  [disabled]="!selectedCategory2"
+  (change)="onProductSelect(2, $event)"
+>
+
+
+        <option value="">-- Choose Product --</option>
+        <option *ngFor="let product of filteredProducts2" [value]="product.id">{{ product.name }}</option>
+      </select>
+
+      <div *ngIf="selectedProduct2" class="card p-3">
+        <img [src]="selectedProduct2.imageUrl" class="img-fluid mb-2" />
+        <h6>{{ selectedProduct2.name }}</h6>
+        <p>{{ selectedProduct2.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison Table -->
+  <div *ngIf="comparisonResults.length > 0" class="mt-5">
+    <h4 class="text-center mb-4">Specifications Comparison</h4>
+    <table class="table table-bordered text-center">
+      <thead class="table-light">
+        <tr>
+          <th>Spec</th>
+          <th>{{ selectedProduct1?.name }}</th>
+          <th>{{ selectedProduct2?.name }}</th>
+          <th>Better</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let result of comparisonResults">
+          <td>{{ result.key }}</td>
+          <td [ngClass]="{'text-success': result.better === selectedProduct1?.name}">{{ result.value1 }}</td>
+          <td [ngClass]="{'text-success': result.better === selectedProduct2?.name}">{{ result.value2 }}</td>
+          <td>
+            <span *ngIf="result.better">{{ result.better }}</span>
+            <span *ngIf="!result.better">Equal / N/A</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-center mt-3">
+      <button class="btn btn-secondary" (click)="resetComparison()">Reset</button>
+    </div>
+  </div>
+</div>

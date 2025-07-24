@@ -1,14 +1,16 @@
 <div class="container py-4">
   <h2 class="text-center mb-4 section-title">Choose a Category</h2>
   <div class="row">
-    @for (category of categories; track category.id) {
-      <div class="col-md-4 mb-4">
+      @for (category of categories; track $index) {
+        <div class="col-md-4 mb-4">
         <div class="category-card card h-100">
           <div class="card-body text-center">
             <img 
-              [src]="category.imageUrl || 'assets/images/categories/default.png'" 
+              [src]="'assets/Images/categories/' + category.name.toLowerCase() + '.png'" 
               [alt]="category.name"
               class="category-image mb-3"
+              width="100"
+              height="100"
             />
             <h5 class="card-title mt-3">{{ category.name }}</h5>
             <button class="btn btn-outline-info mt-2" 
@@ -18,6 +20,6 @@
           </div>
         </div>
       </div>
-    }
+      }
   </div>
 </div>

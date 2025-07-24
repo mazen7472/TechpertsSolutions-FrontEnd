@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Environment } from '../Environment/environment';
-import { IPagedProducts } from '../Interfaces/iproduct';
+import { GeneralResponce, IPagedProducts, IProduct } from '../Interfaces/iproduct';
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +26,9 @@ export class ProductService {
     `${this._baseUrl}/Product/all`,
     { params }
   );
+}
+getProductById(id: string): Observable<GeneralResponce>{
+  return this._httpClient.get<GeneralResponce>(`${this._baseUrl}/Product/${id}`)
 }
 
 }

@@ -48,9 +48,15 @@ export class CartComponent implements OnInit {
   }
 
   checkout(): void {
-    this.CartService.checkout().subscribe(() => {
-      alert('Checkout complete!');
-      this.loadCart();
+    this.CartService.checkout().subscribe({
+      next: (res) =>{
+        console.log(res);
+        
+      },
+      error: (err) =>{
+        console.log(err);
+        
+      }
     });
   }
 

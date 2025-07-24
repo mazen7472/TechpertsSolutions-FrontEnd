@@ -20,10 +20,10 @@ export class AuthService {
   userName: string | null = null;
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(this._isBrowser ? this.hasToken() : false);
+  private userNameSubject = new BehaviorSubject<string | null>(null);
 
-  get isLoggedIn$(): Observable<boolean> {
-    return this.isLoggedInSubject.asObservable();
-  }
+  isLoggedIn$ = this.isLoggedInSubject.asObservable();
+  userName$ = this.userNameSubject.asObservable();
 
   private hasToken(): boolean {
     return this._isBrowser && !!localStorage.getItem('userToken');
@@ -46,7 +46,9 @@ export class AuthService {
         this.userData = jwtDecode(token);
         this.customerId = localStorage.getItem('userId');
         this.userName = localStorage.getItem('userName');
+
         this.isLoggedInSubject.next(true);
+        this.userNameSubject.next(this.userName);
       } catch (err) {
         console.error('Invalid token:', err);
         this.clearUserData();
@@ -61,15 +63,24 @@ export class AuthService {
     this._Router.navigate(['/login']);
   }
 
+  initialize(): void {
+    if (this._isBrowser) {
+      this.saveUserData();
+    }
+  }
+
   private clearUserData(): void {
     if (!this._isBrowser) return;
 
     localStorage.removeItem('userToken');
     localStorage.removeItem('userId');
     localStorage.removeItem('userName');
+
     this.userData = null;
     this.customerId = null;
     this.userName = null;
+
     this.isLoggedInSubject.next(false);
+    this.userNameSubject.next(null);
   }
 }

@@ -40,7 +40,7 @@ export class CategoryDetailsComponent {
       categoryName: 'Processors',
       subCategoryId: 'subcat-001',
       subCategoryName: 'CPU',
-      status: 'Available'
+      status: 'Approved'
     },
     {
       id: 'p2',
@@ -51,7 +51,7 @@ export class CategoryDetailsComponent {
       categoryName: 'Processors',
       subCategoryId: 'subcat-001',
       subCategoryName: 'CPU',
-      status: 'OutOfStock'
+      status: 'Rejected'
     }
   ];
 }

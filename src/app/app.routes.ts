@@ -8,6 +8,7 @@ export const routes: Routes = [
   { path: 'blog', loadComponent: () => import('./components/blog/blog.component').then(m => m.BlogComponent), title: 'Blog Page' },
   { path: 'about', loadComponent: () => import('./components/about/about.component').then(m => m.AboutComponent), title: 'About Page' },
   { path: 'products', loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent), title: 'Products Page' },
+  { path: 'product-details/:id', loadComponent: () => import('./components/products/components/productdetails/productdetails.component').then(m => m.ProductdetailsComponent), title: 'Product Details' },
   { path: 'contact', loadComponent: () => import('./components/contact/contact.component').then(m => m.ContactComponent), title: 'Contact Page' },
   { path: 'login', loadComponent: () => import('./components/log-in/log-in.component').then(m => m.LogInComponent), title: 'LogIn Page' },
   { path: 'register', loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent), title: 'Register Page' },
@@ -16,6 +17,10 @@ export const routes: Routes = [
   { path: 'selector', loadComponent: () => import('./components/pc-build/selector/selector.component').then(m => m.SelectorComponent), title: 'Component Selector' },
   { path: 'categories', loadComponent: () => import('./components/categories/categories.component').then(m => m.CategoriesComponent), title: 'Product Categories' },
   { path: 'category-details/:id', loadComponent: () => import('./components/categories/category-details/category-details.component').then(m => m.CategoryDetailsComponent), title: 'Category Products' },
+  { path: 'order', loadComponent: () => import('./components/order/order.component').then(m => m.OrderComponent), title: 'Order' },
+  { path: 'wish-list', loadComponent: () => import('./components/wishlist/wishlist.component').then(m => m.WishlistComponent), title: 'Wish List' },
+
+  { path: 'pc-compare', loadComponent: () => import('./components/pc-compare/pc-compare.component').then(m => m.PcCompareComponent), title: 'Pc Compare' },
 
   {
     path: 'dashboard',

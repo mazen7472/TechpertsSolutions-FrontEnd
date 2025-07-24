@@ -36,12 +36,12 @@
           <td>
             <ng-container *ngIf="component.selectedProduct as product; else noStatus">
               <span [ngClass]="{
-                'text-success': product.status === 'Available',
-                'text-danger': product.status === 'OutOfStock'
+                'text-success': product.status === 'Approved',
+                'text-danger': product.status === 'Rejected'
               }">
                 <i class="bi" [ngClass]="{
-                  'bi-check-circle-fill': product.status === 'Available',
-                  'bi-x-circle-fill': product.status === 'OutOfStock'
+                  'bi-check-circle-fill': product.status === 'Approved',
+                  'bi-x-circle-fill': product.status === 'Rejected'
                 }"></i>
                 {{ product.status || '-' }}
               </span>

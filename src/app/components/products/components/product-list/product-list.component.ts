@@ -43,6 +43,7 @@ export class ProductListComponent implements OnInit {
           this.allProducts = pagedData.items;
           this.totalPages = pagedData.totalPages;
           this.applyFilters();
+          this.cartService.initializeCartState();
         },
         error: (err) => {
           console.error('❌ Failed to load products', err);
@@ -93,6 +94,7 @@ export class ProductListComponent implements OnInit {
     this.cartService.addItem({ productId, quantity: 1 }).subscribe({
       next: (res) => {
         console.log('✅ Added to cart:', res);
+        this.cartService.initializeCartState();
       },
       error: (err) => {
         console.error('❌ Failed to add to cart:', err);

@@ -47,7 +47,7 @@
       </button>
       <!-- View Details Button -->
       <a
-        [routerLink]="['/product', productC.id]"
+        (click)="goToProduct(productC.id)"
         class="btn btn-sm btn-outline-primary w-100 mt-2"
       >
         <i class="bi bi-eye me-2"></i> View Details

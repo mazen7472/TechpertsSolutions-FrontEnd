@@ -28,7 +28,7 @@ export class SelectorComponent {
         categoryName: 'Components',
         subCategoryId: 'SUBCAT-PROCESSOR-001',
         subCategoryName: 'Processors',
-        status: 'Available'
+        status: 'Approved'
       }
     },
     { name: 'Motherboard', selected: false, selectedProduct: null },

@@ -51,6 +51,7 @@ export class LogInComponent {
           const token = res.data?.token;
           const customerId = res.data?.customerId;
           const userName = res.data?.userName;
+          const userCart = res.data?.userCart;
 
           if (token) {
             console.log(token);
@@ -59,6 +60,7 @@ export class LogInComponent {
               localStorage.setItem('userToken', token);
               if(customerId) localStorage.setItem('customerId', customerId);
               if(userName) localStorage.setItem('userName', userName)
+              if(userCart) localStorage.setItem('userCart', userCart.id)
             }
 
             this._authService.userData = { userName, customerId };

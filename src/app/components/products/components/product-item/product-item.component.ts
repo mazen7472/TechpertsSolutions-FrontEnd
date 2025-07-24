@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, OnInit, Output } from '@angular
 import { IProduct } from '../../../../Interfaces/iproduct';
 import { CartItem, CartService } from '../../../../Services/cart.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-item',
@@ -14,9 +14,14 @@ import { RouterModule } from '@angular/router';
 export class ProductItemComponent {
   @Input() productC! : IProduct
   @Output() addToCart = new EventEmitter<string>();
+  _router=inject(Router)
 
 onAddToCart() {
   this.addToCart.emit(this.productC.id);
+}
+
+goToProduct(id: string){
+  this._router.navigate(['/product-details',id])
 }
 
 

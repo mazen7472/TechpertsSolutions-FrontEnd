@@ -21,34 +21,37 @@ export class NavBarComponent implements OnInit {
   cartItemCount$!: Observable<number>;
   cartTotalPrice$!: Observable<number>;
   animateCart$!: Observable<boolean>;
-  userName : string | null = null;
+  userName: string | null = null;
   cartCount = 0;
-
 
   private _platformId = inject(PLATFORM_ID);
   private _isBrowser = isPlatformBrowser(this._platformId);
-  public _authService = inject(AuthService)
+  public _authService = inject(AuthService);
 
   constructor(private cartService: CartService) {}
 
- ngOnInit(): void {
-  this.cartService.initializeCartState();
-  this.cartItemCount$ = this.cartService.itemCount$;
-  this.cartTotalPrice$ = this.cartService.totalPrice$;
-  this.animateCart$ = this.cartService.animateCart$;
+  ngOnInit(): void {
+    this.cartService.initializeCartState();
+    this._authService.initialize();
 
-  if (this._isBrowser) {
-    this._authService.isLoggedIn$.subscribe((status) => {
-      this.isLogedIn = status;
-      this.userName = localStorage.getItem('userName');
-    });
+    this.cartItemCount$ = this.cartService.itemCount$;
+    this.cartTotalPrice$ = this.cartService.totalPrice$;
+    this.animateCart$ = this.cartService.animateCart$;
 
-    this.cartService.getCart().subscribe(items => {
-      this.cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
-    });
+    if (this._isBrowser) {
+      this._authService.isLoggedIn$.subscribe((status) => {
+        this.isLogedIn = status;
+      });
+
+      this._authService.userName$.subscribe((name) => {
+        this.userName = name;
+      });
+
+      this.cartService.getCart().subscribe(items => {
+        this.cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
+      });
+    }
   }
-}
-
 
   toggleDarkMode(): void {
     this.isDarkMode = !this.isDarkMode;

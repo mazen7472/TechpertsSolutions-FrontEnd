@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavBarComponent } from "./components/nav-bar/nav-bar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { CommonModule } from '@angular/common';
 import { ScrollProgressComponent } from './components/scroll-progress/scroll-progress.component';
+import { CartService } from './Services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,11 @@ import { ScrollProgressComponent } from './components/scroll-progress/scroll-pro
 })
 export class AppComponent {
   title = 'Teckperts-Solutions';
+  _cartService = inject(CartService)
+
+  ngOnInit(): void {
+    this._cartService.initializeCartState();
+    console.log("hi");
+    
+  }
 }

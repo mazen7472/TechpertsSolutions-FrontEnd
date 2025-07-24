@@ -1,0 +1,14 @@
+.card {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+img.img-thumbnail {
+  max-height: 150px;
+  object-fit: cover;
+}

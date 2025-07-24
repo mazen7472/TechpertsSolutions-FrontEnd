@@ -1,0 +1,15 @@
+.card img {
+  object-fit: cover;
+  height: 100%;
+  border-right: 1px solid #eee;
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 0.5em 0.75em;
+  border-radius: 0.5rem;
+}
+button.btn[disabled] {
+  opacity: 0.6;
+  pointer-events: none;
+}
