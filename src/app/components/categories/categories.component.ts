@@ -13,12 +13,14 @@ import { ICategory } from '../../Interfaces/icategory';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent {
-  categories = [
-    { id: 'cpu', name: 'Processors', imageUrl: 'assets/Images/motherboard.png' },
-    { id: 'gpu', name: 'Graphics Cards', imageUrl: 'assets/Images/video-card-1.png' },
-    { id: 'motherboard', name: 'Motherboards', imageUrl: 'assets/Images/motherboard.png' },
-    // Add more categories with imageUrl
-  ];
+categories = [
+  { id: 'services', name: 'SERVICES', imageUrl: 'assets/Images/Categories/customer-service-1.png' },
+  { id: 'cpu', name: 'Processors', imageUrl: 'assets/Images/Categories/processors.png' },
+  { id: 'motherboard', name: 'Motherboards', imageUrl: 'assets/Images/Categories/motherboard.png' },
+  { id: 'gpu', name: 'Graphics Cards', imageUrl: 'assets/Images/video-card-1.png' },
+  { id: 'laptop', name: 'Laptop', imageUrl: 'assets/Images/Categories/laptop.png' },
+  { id: 'ram', name: 'RAM', imageUrl: 'assets/Images/Categories/ram.png' },
+];
 
   constructor(private router: Router) {}
 

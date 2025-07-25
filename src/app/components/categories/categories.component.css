@@ -41,3 +41,22 @@
   background-color: var(--accent-blue, #0dcaf0);
   color: #fff;
 }
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1ec9c9;
+
+  margin-top: 0.75rem;
+  letter-spacing: 0.5px;
+  transition: 
+    transform 0.3s ease;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+}
+
+.card-title:hover {
+  transform: scale(1.06);
+
+  color: #7f5af0;
+}
