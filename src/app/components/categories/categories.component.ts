@@ -12,18 +12,15 @@ import { ICategory } from '../../Interfaces/icategory';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit {
-  categories: ICategory[] = [];
+export class CategoriesComponent {
+  categories = [
+    { id: 'cpu', name: 'Processors', imageUrl: 'assets/Images/motherboard.png' },
+    { id: 'gpu', name: 'Graphics Cards', imageUrl: 'assets/Images/video-card-1.png' },
+    { id: 'motherboard', name: 'Motherboards', imageUrl: 'assets/Images/motherboard.png' },
+    // Add more categories with imageUrl
+  ];
 
-  constructor(private router: Router, private categoryService: CategoryService) {}
-
-  ngOnInit() {
-    this.categoryService.getAllCategories().subscribe(response => {
-      if (response.success && response.data) {
-        this.categories = response.data;
-      }
-    });
-  }
+  constructor(private router: Router) {}
 
   navigateToCategory(id: string) {
     this.router.navigate(['/category-details', id]);

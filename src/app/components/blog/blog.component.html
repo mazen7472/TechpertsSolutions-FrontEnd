@@ -1,65 +1,76 @@
 <div class="container">
-  <!-- Headline Section -->
-  <section class="headline-section text-center my-5" style="color: var(--text-primary);">
-    <h1>Latest Computer Hardware</h1>
-    <p style="color: var(--text-secondary);">
-      Discover the newest parts, benchmarks, and expert reviews to build your ultimate setup.
+  <!-- Headline -->
+  <section class="text-center my-5">
+    <h1 class="section-title">TechPerts Hardware Insights</h1>
+    <p class="section-subtitle">
+      Explore the latest reviews, comparisons, and PC hardware benchmarks.
     </p>
-    <button class="btn mt-3" style="background-color: var(--btn-success-bg); color: var(--button-text);">
+    <button class="btn explore-btn" (click)="scrollToSection('articles')">
       Explore Articles
     </button>
   </section>
 
+  <!-- Search Bar -->
+  <div class="row mb-4 justify-content-center">
+    <div class="col-md-6">
+      <input [(ngModel)]="searchQuery" class="form-control" placeholder="Search articles..." />
+    </div>
+  </div>
+
   <!-- Featured Articles -->
-  <section>
-    <h2 style="color: var(--text-primary);">Featured Articles</h2>
+  <section id="articles">
+    <h2 class="section-title">Featured Articles</h2>
     <div class="row">
-      @for (article of featuredArticles; track article.title) {
-        <div class="col-md-4">
-          <div class="card featured-article mb-4" style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--card-border);">
-            <img [src]="article.img" class="card-img-top" [alt]="article.title" />
+      <ng-container *ngIf="filteredArticles.length > 0; else noArticles">
+        <div class="col-md-4 mb-4" *ngFor="let article of filteredArticles; trackBy: trackByTitle">
+          <div class="card h-100 article-card">
+            <img [src]="article.img" class="card-img-top img-fluid" [alt]="article.title" />
             <div class="card-body">
-              <p class="text-muted" style="color: var(--text-muted);">{{ article.date }}</p>
+              <p class="text-primary">{{ article.date }}</p>
               <h5 class="card-title">{{ article.title }}</h5>
               <p class="card-text">{{ article.description }}</p>
-              <a href="#" class="btn btn-sm" style="border-color: var(--link-color); color: var(--link-color);">Read More</a>
+              <a [routerLink]="['/blog', article.slug]" class="btn btn-sm read-more-btn">
+                Read More
+              </a>
             </div>
           </div>
         </div>
-      } @empty {
-        <p class="text-muted ml-3" style="color: var(--text-muted);">No articles available at the moment.</p>
-      }
+      </ng-container>
+      <ng-template #noArticles>
+        <p class="text-primary">No articles found for that search.</p>
+      </ng-template>
     </div>
   </section>
 
   <!-- Categories -->
-  <section class="mt-5">
-    <h2 style="color: var(--text-primary);">Browse by Category</h2>
-    <div class="row text-center">
-      @for (category of categories; track category.title) {
-        <div class="col-md-3">
-          <div class="card category-card p-3 mb-4" style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--card-border);">
-            <h5>{{ category.title }}</h5>
-            <p>{{ category.description }}</p>
-          </div>
+<div class="categories-section">
+  <h2 class="section-title">Our Categories</h2>
+  <div class="categories-container">
+    @for (category of categories; track category) {
+      <div class="category-card clickable">
+        <div class="icon-wrapper category-icon">
+          <img [src]="category.imageUrl" [alt]="category.label" class="category-img" />
         </div>
-      } @empty {
-        <p class="text-muted ml-3" style="color: var(--text-muted);">No categories available.</p>
-      }
+        <p class="category-label">{{ category.label }}</p>
+      </div>
+    }
+  </div>
+</div>
+
+  <!-- Tags -->
+  <section class="mt-5">
+    <h2 class="section-title">Popular Tags</h2>
+    <div class="d-flex flex-wrap justify-content-center">
+      <span *ngFor="let tag of tags" class="badge tag-badge">#{{ tag }}</span>
     </div>
   </section>
 
-  <!-- Subscription Section -->
-  <section class="subscribe-section mt-5 text-center" style="display: none; color: var(--text-primary);">
-    <h2>Stay Updated</h2>
+  <!-- Subscription -->
+  <section *ngIf="showSubscription" class="text-center mt-5">
+    <h2 class="section-title">Stay Updated</h2>
     <form class="form-inline justify-content-center mt-3">
-      <input type="email" class="form-control mr-2"
-             style="background-color: var(--input-bg); color: var(--input-text); border-color: var(--input-border);"
-             placeholder="Enter your email" />
-      <button type="submit" class="btn btn-primary"
-              style="background-color: var(--btn-success-bg); color: var(--button-text);">
-        Subscribe
-      </button>
+      <input type="email" class="form-control mr-2 mb-3" placeholder="Enter your email" />
+      <button type="submit" class="btn subscribe-btn">Subscribe</button>
     </form>
   </section>
 </div>

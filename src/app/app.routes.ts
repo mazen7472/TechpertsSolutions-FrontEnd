@@ -6,6 +6,10 @@ export const routes: Routes = [
 
   { path: 'home', loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent), title: 'Home Page' },
   { path: 'blog', loadComponent: () => import('./components/blog/blog.component').then(m => m.BlogComponent), title: 'Blog Page' },
+
+ 
+  { path: 'blog/:slug', loadComponent: () => import('./components/categories/article-detail/article-detail.component').then(m => m.ArticleDetailComponent), title: 'Article Details' },
+
   { path: 'about', loadComponent: () => import('./components/about/about.component').then(m => m.AboutComponent), title: 'About Page' },
   { path: 'products', loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent), title: 'Products Page' },
   { path: 'product-details/:id', loadComponent: () => import('./components/products/components/productdetails/productdetails.component').then(m => m.ProductdetailsComponent), title: 'Product Details' },
