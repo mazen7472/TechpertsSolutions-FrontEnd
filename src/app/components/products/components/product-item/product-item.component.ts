@@ -46,14 +46,23 @@ onAddToWishlist(product: IProduct) {
     return;
   }
 
+  console.log('💖 Attempting to add to wishlist:', { productId: product.id, customerId });
+
   this._wishlistService.addItemToCustomerWishlist(customerId, product.id).subscribe({
     next: () => {
+      console.log('✅ Wishlist API success');
       this._toastr.success('Added to wishlist');
       this._wishlistService.initializeWishlistState();
     },
     error: (err) => {
-      console.error('Error adding to wishlist:', err);
-      this._toastr.error('Could not add to wishlist');
+      console.error('❌ Wishlist API error details:', {
+        status: err.status,
+        statusText: err.statusText,
+        message: err.message,
+        url: err.url,
+        error: err.error
+      });
+      this._toastr.error('Could not add to wishlist - Check if API is running');
     }
   });
 }

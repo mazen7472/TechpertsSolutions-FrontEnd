@@ -5,6 +5,8 @@ import { CartService } from '../../../../Services/cart.service';
 import { FormsModule } from '@angular/forms';
 import { NgFor} from '@angular/common';
 import { ProductItemComponent } from '../product-item/product-item.component';
+import { ToastrService } from 'ngx-toastr';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-product-list',
@@ -24,6 +26,8 @@ export class ProductListComponent implements OnInit {
   pageSize: number = 6;
   totalPages: number = 0;
 
+  _toastr = inject(ToastrService);
+
   constructor(
     private productService: ProductService,
     private cartService: CartService
@@ -35,122 +39,6 @@ export class ProductListComponent implements OnInit {
 
   loadProducts(): void {
     console.log('🚀 Starting to load products...');
-    
-    // Temporary mock data for testing
-    const mockProducts: IProduct[] = [
-      {
-        id: '1',
-        name: 'Gaming Laptop Pro X1',
-        price: 1299,
-        discountPrice: 1199,
-        imageUrl: 'https://picsum.photos/seed/1/300/200',
-        categoryName: 'Electronics',
-        subCategoryId: 'BD4CE6BB-7CCD-43B6-AA4D-9A7335D56DB8',
-        subCategoryName: 'Laptops',
-        status: 'Approved',
-        description: 'High-performance gaming laptop with RTX graphics'
-      },
-      {
-        id: '2',
-        name: 'Ultra Gaming Desktop',
-        price: 2499,
-        discountPrice: 2299,
-        imageUrl: 'https://picsum.photos/seed/2/300/200',
-        categoryName: 'Electronics',
-        subCategoryId: 'BD4CE6BB-7CCD-43B6-AA4D-9A7335D56DB8',
-        subCategoryName: 'Desktops',
-        status: 'Approved',
-        description: 'Custom-built gaming desktop with premium components'
-      },
-      {
-        id: '3',
-        name: 'Wireless Gaming Mouse',
-        price: 89,
-        discountPrice: 79,
-        imageUrl: 'https://picsum.photos/seed/3/300/200',
-        categoryName: 'Accessories',
-        subCategoryId: 'BD4CE6BB-7CCD-43B6-AA4D-9A7335D56DB8',
-        subCategoryName: 'Mice',
-        status: 'Approved',
-        description: 'High-precision wireless gaming mouse'
-      },
-      {
-        id: '4',
-        name: 'Mechanical Gaming Keyboard',
-        price: 149,
-        discountPrice: 129,
-        imageUrl: 'https://picsum.photos/seed/4/300/200',
-        categoryName: 'Accessories',
-        subCategoryId: 'BD4CE6BB-7CCD-43B6-AA4D-9A7335D56DB8',
-        subCategoryName: 'Keyboards',
-        status: 'Approved',
-        description: 'RGB mechanical keyboard with customizable switches'
-      },
-      {
-        id: '5',
-        name: 'Gaming Headset Pro',
-        price: 199,
-        discountPrice: 179,
-        imageUrl: 'https://picsum.photos/seed/5/300/200',
-        categoryName: 'Accessories',
-        subCategoryId: 'BD4CE6BB-7CCD-43B6-AA4D-9A7335D56DB8',
-        subCategoryName: 'Audio',
-        status: 'Approved',
-        description: '7.1 surround sound gaming headset with noise cancellation'
-      },
-      {
-        id: '6',
-        name: 'Gaming Monitor 27"',
-        price: 399,
-        discountPrice: 349,
-        imageUrl: 'https://picsum.photos/seed/6/300/200',
-        categoryName: 'Electronics',
-        subCategoryId: 'BD4CE6BB-7CCD-43B6-AA4D-9A7335D56DB8',
-        subCategoryName: 'Monitors',
-        status: 'Approved',
-        description: '144Hz 4K gaming monitor with HDR support'
-      },
-      {
-        id: '7',
-        name: 'Gaming Chair Elite',
-        price: 299,
-        discountPrice: 249,
-        imageUrl: 'https://picsum.photos/seed/7/300/200',
-        categoryName: 'Accessories',
-        subCategoryId: 'BD4CE6BB-7CCD-43B6-AA4D-9A7335D56DB8',
-        subCategoryName: 'Furniture',
-        status: 'Approved',
-        description: 'Ergonomic gaming chair with lumbar support'
-      },
-      {
-        id: '8',
-        name: 'Gaming Mouse Pad XL',
-        price: 29,
-        discountPrice: 24,
-        imageUrl: 'https://picsum.photos/seed/8/300/200',
-        categoryName: 'Accessories',
-        subCategoryId: 'BD4CE6BB-7CCD-43B6-AA4D-9A7335D56DB8',
-        subCategoryName: 'Mouse Pads',
-        status: 'Approved',
-        description: 'Extra large gaming mouse pad with RGB lighting'
-      }
-    ];
-
-    // Use mock data for now
-    this.allProducts = mockProducts;
-    this.totalPages = Math.ceil(this.allProducts.length / this.pageSize);
-    console.log('📋 Mock products loaded:', this.allProducts.length, 'items');
-    this.applyFilters();
-    
-    // Initialize cart state only if user is logged in
-    try {
-      this.cartService.initializeCartState();
-    } catch (error) {
-      console.log('User not logged in, skipping cart initialization');
-    }
-
-    // Comment out the actual API call for now
-    /*
     this.productService
       .getAllProducts(this.currentPage, this.pageSize, 'name', false)
       .subscribe({
@@ -162,13 +50,20 @@ export class ProductListComponent implements OnInit {
           console.log('📋 All products loaded:', this.allProducts.length, 'items');
           this.totalPages = pagedData.totalPages;
           this.applyFilters();
-          this.cartService.initializeCartState();
+          // Initialize cart state only if user is logged in
+          try {
+            this.cartService.initializeCartState();
+          } catch (error) {
+            console.log('User not logged in, skipping cart initialization');
+          }
         },
         error: (err) => {
-          console.error('❌ Failed to load products', err);
+          console.error('❌ Failed to load products from API:', err);
+          this.allProducts = [];
+          this.totalPages = 0;
+          this.applyFilters();
         }
       });
-    */
   }
 
   applyFilters(): void {
@@ -228,13 +123,29 @@ export class ProductListComponent implements OnInit {
   }
 
   handleAddToCart(productId: string): void {
+    const customerId = localStorage.getItem('customerId');
+    if (!customerId) {
+      this._toastr.error('Please login first');
+      return;
+    }
+    
+    console.log('🛒 Attempting to add to cart:', { productId, customerId });
+    
     this.cartService.addItem({ productId, quantity: 1 }).subscribe({
       next: (res) => {
-        console.log('✅ Added to cart:', res);
+        console.log('✅ Cart API response:', res);
+        this._toastr.success('Added to cart');
         this.cartService.initializeCartState();
       },
       error: (err) => {
-        console.error('❌ Failed to add to cart:', err);
+        console.error('❌ Cart API error details:', {
+          status: err.status,
+          statusText: err.statusText,
+          message: err.message,
+          url: err.url,
+          error: err.error
+        });
+        this._toastr.error('Could not add to cart - Check if API is running');
       }
     });
   }
