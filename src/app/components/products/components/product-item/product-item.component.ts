@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, OnInit } from '@angular/core';
 import { IProduct } from '../../../../Interfaces/iproduct';
 import { CartService } from '../../../../Services/cart.service';
 import { CommonModule } from '@angular/common';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './product-item.component.html',
   styleUrl: './product-item.component.css'
 })
-export class ProductItemComponent {
+export class ProductItemComponent implements OnInit {
   @Input() productC!: IProduct;
   @Output() addToCart = new EventEmitter<string>();
 
@@ -30,8 +30,12 @@ export class ProductItemComponent {
     this._router.navigate(['/product-details', id]);
   }
 
+  onImgError(event: Event) {
+    (event.target as HTMLImageElement).src = 'https://picsum.photos/seed/' + this.productC.id + '/300/200';
+  }
+
   ngOnInit(): void {
-    console.log(this.productC);
+    console.log('Product item initialized with:', this.productC);
   }
 
   // ADD WISHLIST LOGIC HERE

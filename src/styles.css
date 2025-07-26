@@ -1,3 +1,6 @@
+/* Import ngx-toastr styles */
+@import 'ngx-toastr/toastr';
+
 /* === Default (Dark) Theme === */
 :root {
   --bg-color: #121621;

@@ -22,6 +22,9 @@ export class ProductService {
     .set('sortBy', sortBy)
     .set('sortDesc', sortDesc.toString());
 
+  console.log('🔍 Making API request to:', `${this._baseUrl}/Product/all`);
+  console.log('🔍 Parameters:', { pageNumber, pageSize, sortBy, sortDesc });
+
   return this._httpClient.get<{ success: boolean; message: string; data: IPagedProducts }>(
     `${this._baseUrl}/Product/all`,
     { params }

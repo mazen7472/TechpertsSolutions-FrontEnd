@@ -29,35 +29,52 @@
   </div>
 
   <!-- Product Grid -->
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    @for (product of pagedProducts; track $index) {
-      <app-product-item
-        [productC]="product"
-        (addToCart)="handleAddToCart($event)">
-      </app-product-item>
-    }
-  </div>
+  @if (pagedProducts.length > 0) {
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      @for (product of pagedProducts; track $index) {
+        <app-product-item
+          [productC]="product"
+          (addToCart)="handleAddToCart($event)">
+        </app-product-item>
+      }
+    </div>
+  } @else {
+    <div class="text-center py-5">
+      <div class="alert alert-info">
+        <i class="bi bi-info-circle me-2"></i>
+        @if (searchQuery.trim()) {
+          No products found matching "{{ searchQuery }}"
+        } @else {
+          No products available at the moment
+        }
+      </div>
+    </div>
+  }
 
   <!-- Pagination -->
-  <nav aria-label="Page navigation" class="mt-4">
-    <ul class="pagination justify-content-center">
-      <li class="page-item" [class.disabled]="currentPage === 1">
-        <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
-          Previous
-        </button>
-      </li>
+  @if (totalPages > 1) {
+    <nav aria-label="Page navigation" class="mt-4">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+            Previous
+          </button>
+        </li>
 
-      <li class="page-item" *ngFor="let page of totalPagesArray; let i = index" [class.active]="currentPage === (i + 1)">
-        <button class="page-link" (click)="changePage(i + 1)">
-          {{ i + 1 }}
-        </button>
-      </li>
+        @for (page of totalPagesArray; track $index) {
+          <li class="page-item" [class.active]="currentPage === ($index + 1)">
+            <button class="page-link" (click)="changePage($index + 1)">
+              {{ $index + 1 }}
+            </button>
+          </li>
+        }
 
-      <li class="page-item" [class.disabled]="currentPage === totalPages">
-        <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
-          Next
-        </button>
-      </li>
-    </ul>
-  </nav>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+            Next
+          </button>
+        </li>
+      </ul>
+    </nav>
+  }
 </div>
