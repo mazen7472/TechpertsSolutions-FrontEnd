@@ -9,17 +9,23 @@ import { CartService } from './Services/cart.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NavBarComponent, FooterComponent,CommonModule ,ScrollProgressComponent],
+  imports: [
+    RouterOutlet,
+    NavBarComponent,
+    FooterComponent,
+    CommonModule,
+    ScrollProgressComponent
+    
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'Teckperts-Solutions';
-  _cartService = inject(CartService)
+  _cartService = inject(CartService);
 
   ngOnInit(): void {
     this._cartService.initializeCartState();
     console.log("hi");
-    
   }
 }

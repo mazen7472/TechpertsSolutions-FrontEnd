@@ -13,11 +13,8 @@ import { IProduct } from '../../Interfaces/iproduct';
 })
 export class PcCompareComponent implements OnInit {
   allProducts: IProduct[] = [];
-
   categories: string[] = [];
-
-  selectedCategory1: string | null = null;
-  selectedCategory2: string | null = null;
+  selectedCategory: string | null = null;
 
   filteredProducts1: IProduct[] = [];
   filteredProducts2: IProduct[] = [];
@@ -45,50 +42,46 @@ export class PcCompareComponent implements OnInit {
     });
   }
 
-  onCategoryChange(column: 1 | 2): void {
-    const selectedCategory = column === 1 ? this.selectedCategory1 : this.selectedCategory2;
-    const filtered = this.allProducts.filter(p => p.categoryName === selectedCategory);
+  onCategoryChange(): void {
+    if (!this.selectedCategory) return;
 
-    if (column === 1) {
-      this.filteredProducts1 = filtered;
-      this.selectedProduct1 = null;
-    } else {
-      this.filteredProducts2 = filtered;
-      this.selectedProduct2 = null;
-    }
+    const filtered = this.allProducts.filter(
+      p => p.categoryName === this.selectedCategory
+    );
 
+    this.filteredProducts1 = filtered;
+    this.filteredProducts2 = filtered;
+
+    this.selectedProduct1 = null;
+    this.selectedProduct2 = null;
     this.comparisonResults = [];
   }
 
   onProductSelect(column: 1 | 2, event: Event): void {
-  const selectElement = event.target as HTMLSelectElement;
-  const productId = selectElement.value;
+    const selectElement = event.target as HTMLSelectElement;
+    const productId = selectElement.value;
 
-  if (!productId) {
-    if (column === 1) this.selectedProduct1 = null;
-    else this.selectedProduct2 = null;
-    this.comparisonResults = [];
-    return;
-  }
-
- this.productService.getProductById(productId).subscribe(res => {
-  if (res.success) {
-    console.log('FULL PRODUCT DATA:', res.data); // 🔍 Look for specifications here
-
-    if (column === 1) {
-      this.selectedProduct1 = res.data;
-    } else {
-      this.selectedProduct2 = res.data;
+    if (!productId) {
+      if (column === 1) this.selectedProduct1 = null;
+      else this.selectedProduct2 = null;
+      this.comparisonResults = [];
+      return;
     }
 
-    if (this.selectedProduct1 && this.selectedProduct2) {
-      this.compareSpecs();
-    }
+    this.productService.getProductById(productId).subscribe(res => {
+      if (res.success) {
+        if (column === 1) {
+          this.selectedProduct1 = res.data;
+        } else {
+          this.selectedProduct2 = res.data;
+        }
+
+        if (this.selectedProduct1 && this.selectedProduct2) {
+          this.compareSpecs();
+        }
+      }
+    });
   }
-});
-
-}
-
 
   compareSpecs(): void {
     if (!this.selectedProduct1 || !this.selectedProduct2) {
@@ -127,8 +120,7 @@ export class PcCompareComponent implements OnInit {
   }
 
   resetComparison(): void {
-    this.selectedCategory1 = null;
-    this.selectedCategory2 = null;
+    this.selectedCategory = null;
     this.filteredProducts1 = [];
     this.filteredProducts2 = [];
     this.selectedProduct1 = null;

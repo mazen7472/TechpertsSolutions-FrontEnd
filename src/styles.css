@@ -180,7 +180,7 @@ body {
 
 .section-subtitle {
   font-size: 1.35rem;
-  font-style: italic;
+  font-style: bold;
   text-align: center;
   color: var(--text-secondary);
   padding: 1.25rem 2rem;
@@ -194,20 +194,31 @@ body {
     rgba(127, 90, 240, 0.2),
     rgba(255, 76, 76, 0.15)
   );
-  border-image: linear-gradient(90deg, #4ca6ff, #7f5af0, #ff4c4c);
-  border-image-slice: 1;
-  box-shadow: 0 0 20px rgba(127, 90, 240, 0.3);
-  text-shadow: 0 0 5px rgba(127, 90, 240, 0.25);
-  backdrop-filter: blur(8px);
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 0.7px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-clip: padding-box;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease-in-out;
 }
+.section-subtitle::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1.25rem;
+  padding: 2px;
+  background: linear-gradient(90deg, #0d6efd, #1a8cff, #ff1a1a);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+}
+
 
 .section-subtitle:hover {
   transform: scale(1.015);
   box-shadow: 0 0 30px rgba(127, 90, 240, 0.5);
 }
+
 
 body.dark-theme .section-subtitle {
   background: linear-gradient(
@@ -216,8 +227,6 @@ body.dark-theme .section-subtitle {
     rgba(26, 140, 255, 0.15),
     rgba(255, 26, 26, 0.12)
   );
-  border-image: linear-gradient(90deg, #0d6efd, #1a8cff, #ff1a1a);
-  border-image-slice: 1;
   color: var(--text-secondary);
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);

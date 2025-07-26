@@ -217,7 +217,7 @@ body.dark-mode .modern-btn-secondary:hover {
 
 .profile-btn:hover {
   background-color: var(--primary-color);
-  color: #fff;
+  color: var(--text-primary);
   border-color: var(--primary-color);
 }
 
@@ -280,9 +280,20 @@ body.dark-mode .active-btn:hover {
 }
 
 .cart-badge {
-  font-size: 0.7rem;
-  padding: 0.25em 0.55em;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35em 0.6em;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff;
+  box-shadow: 0 0 8px rgba(255, 75, 43, 0.6);
+  transform: scale(1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cart-badge:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(255, 75, 43, 0.8);
 }
 
 .cart-total {
@@ -384,7 +395,11 @@ body.dark-mode .cart-btn:hover {
     padding-top: 1rem;
   }
 
- 
+ .profile-btn:hover {
+  background-color: transparent;
+  color: var(--accent-blue);
+  border-color: var(--primary-color);
+}
   .cart-btn,
   .profile-btn,
   .custom-btn,
@@ -432,4 +447,89 @@ body.dark-mode .cart-btn:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+.navbar-toggler-icon-custom {
+  font-size: 1.8rem;
+  color: var(--primary-color); /* Or any specific color */
+  transition: color 0.3s ease;
+  border-color: #66b2ff!important;
+}
+
+.navbar-toggler-icon-custom:hover {
+  color: var(--accent-blue); /* On hover */
+}
+.navbar-toggler {
+  padding: 0.5rem 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-toggler:hover,
+.navbar-toggler:focus {
+  background-color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  outline: none;
+  
+}
+
+.navbar-toggler i {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.navbar-toggler:hover i,
+.navbar-toggler:focus i {
+  color: var(--button-text); /* Example: white */
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  border-radius: 25px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.wishlist-btn:hover {
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  color: #fff !important;
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgba(255, 75, 43, 0.4);
+}
+
+.wishlist-btn i {
+  font-size: 1.3rem;
+  color: #ff4b2b;
+  transition: color 0.3s ease;
+}
+
+.wishlist-btn:hover i {
+  color: #fff;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1); }
+}
+
+.cart-badge.updated,
+.wishlist-badge.updated {
+  animation: pulse 0.4s ease;
 }

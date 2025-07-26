@@ -1,49 +1,68 @@
-import { Component } from '@angular/core';
-import { WishListReadDTO } from '../../Interfaces/wishlist';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { WishListItemReadDTO } from '../../Interfaces/wishlist';
 import { WishlistService } from '../../Services/wishlist.service';
-import { WishlistItemComponent } from "./components/wishlist-item/wishlist-item.component";
+import { CartService } from '../../Services/cart.service';
+import { ToastrService } from 'ngx-toastr';
+import { WishlistItemComponent } from './components/wishlist-item/wishlist-item.component';
+
+
+
 
 @Component({
   selector: 'app-wishlist',
   standalone: true,
-  imports: [WishlistItemComponent],
   templateUrl: './wishlist.component.html',
-  styleUrl: './wishlist.component.css'
+  styleUrls: ['./wishlist.component.css'],
+  imports: [WishlistItemComponent]
 })
-export class WishlistComponent {
-   wishlist?: WishListReadDTO;
-  isLoading = true;
+export class WishlistComponent implements OnInit {
 
-  constructor(private wishlistService: WishlistService) {}
+  wishList: WishListItemReadDTO[] = [];
+
+  constructor(
+    private _wishList: WishlistService,
+    private _router: Router,
+    private _cartService: CartService,
+    private _toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    const customerId = localStorage.getItem('customerId');
-    if (!customerId) {
-      this.isLoading = false;
-      return;
-    }
+    this.loadWishlist();
+  }
 
-    this.wishlistService.getWishListByCustomerId(customerId).subscribe({
+  private loadWishlist() {
+    this._wishList.getLoggedWishList().subscribe({
       next: (res) => {
-        this.wishlist = res.data;
-        this.isLoading = false;
+        this.wishList = res.data?.items || [];
+        console.log('Wishlist:', this.wishList);
       },
-      error: () => {
-        this.isLoading = false;
-      }
+      error: (err) => console.error('Error loading wishlist:', err)
     });
   }
 
-  removeItem(itemId: string) {
-    // if (!this.wishlist) return;
+  removeItem(productId: string) {
+    this._wishList.removeWishedItem(productId).subscribe({
+      next: () => {
+        this._toastr.error('Item has been removed', 'Remove', { timeOut: 2000 });
+        this.loadWishlist();
+        // refresh wishlist count
+        this._wishList.initializeWishlistState();
+      },
+      error: (err) => console.error('Error removing item:', err)
+    });
+  }
 
-    // this.wishlistService.removeItemFromWishList(this.wishlist.id, itemId).subscribe({
-    //   next: () => {
-    //     this.wishlist!.items = this.wishlist!.items.filter(item => item.id !== itemId);
-    //   },
-    //   error: (err) => {
-    //     console.error('Failed to remove item:', err);
-    //   }
-    // });
+  addToCart(id: string) {
+ 
+    this._cartService.addItem({ productId: id, quantity: 1 }).subscribe({
+      next: () => {
+        this._toastr.success('Item has been added', 'Success', { timeOut: 1000 });
+
+     
+        this._cartService.initializeCartState();
+      },
+      error: (err) => console.error('Error adding to cart:', err)
+    });
   }
 }
