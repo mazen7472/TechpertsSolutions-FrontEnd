@@ -4,9 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, catchError, map, Observable, of, switchMap, throwError } from 'rxjs';
 import { Environment } from '../Environment/environment';
 import { GeneralResponse } from '../Interfaces/iorder';
-import { WishListCreateDTO, WishListReadDTO, WishListItemCreateDTO, WishListItemReadDTO } from '../Interfaces/wishlist';
-
- 
+import {
+  WishListCreateDTO,
+  WishListReadDTO,
+  WishListItemCreateDTO,
+  WishListItemReadDTO
+} from '../Interfaces/wishlist';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +18,11 @@ export class WishlistService {
   private _baseUrl = `${Environment.baseUrl}/WishList`;
   private isBrowser: boolean;
 
-  constructor(
-    private _http: HttpClient,
-    @Inject(PLATFORM_ID) platformId: Object
-  ) {
+  constructor(private _http: HttpClient, @Inject(PLATFORM_ID) platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  // Subjects for wishlist state
   private itemsCountSubject = new BehaviorSubject<number>(0);
-
   get itemCount$(): Observable<number> {
     return this.itemsCountSubject.asObservable();
   }
@@ -34,47 +32,48 @@ export class WishlistService {
     return localStorage.getItem('customerId');
   }
 
-  // ==================== Core API ====================
-
   createWishList(dto: WishListCreateDTO) {
-    return this._http.post<GeneralResponse<string>>(this._baseUrl, dto).pipe(
-      catchError(err => throwError(() => err))
-    );
+    return this._http.post<GeneralResponse<string>>(this._baseUrl, dto);
   }
 
   getWishListById(id: string) {
-    return this._http.get<GeneralResponse<WishListReadDTO>>(`${this._baseUrl}/${id}`).pipe(
-      catchError(err => throwError(() => err))
-    );
+    return this._http.get<GeneralResponse<WishListReadDTO>>(`${this._baseUrl}/${id}`);
   }
 
   getWishListByCustomerId(customerId: string) {
-    return this._http.get<GeneralResponse<WishListReadDTO>>(`${this._baseUrl}/customer/${customerId}`).pipe(
-      catchError(err => throwError(() => err))
+    return this._http.get<GeneralResponse<WishListReadDTO[]>>(`${this._baseUrl}/customer/${customerId}`);
+  }
+
+  getFirstWishlist(customerId: string): Observable<WishListReadDTO | null> {
+    return this.getWishListByCustomerId(customerId).pipe(
+      map(res => res.data?.[0] || null)
     );
   }
 
   addItemToWishList(wishListId: string, dto: WishListItemCreateDTO) {
-    return this._http.post<GeneralResponse<string>>(`${this._baseUrl}/${wishListId}/items`, dto).pipe(
-      catchError(err => throwError(() => err))
-    );
+    return this._http.post<GeneralResponse<string>>(`${this._baseUrl}/${wishListId}/items`, dto);
   }
 
   removeItemFromWishList(wishListId: string, itemId: string) {
-    return this._http.delete<GeneralResponse<string>>(`${this._baseUrl}/${wishListId}/items/${itemId}`).pipe(
-      catchError(err => throwError(() => err))
-    );
+    return this._http.delete<GeneralResponse<string>>(`${this._baseUrl}/${wishListId}/items/${itemId}`);
   }
 
-  // ==================== High-level Helpers ====================
+  moveAllToCart(wishlistId: string, customerId: string) {
+    return this._http.post<GeneralResponse<boolean>>(`${this._baseUrl}/${wishlistId}/move-to-cart?customerId=${customerId}`, {});
+  }
+
+  moveSelectedToCart(wishlistId: string, customerId: string, itemIds: string[]) {
+    return this._http.post<GeneralResponse<boolean>>(`${this._baseUrl}/${wishlistId}/move-selected-to-cart?customerId=${customerId}`, itemIds);
+  }
 
   getLoggedWishList() {
-    if (!this.isBrowser) return throwError(() => new Error('Cannot access wishlist on server.'));
     const userId = this.getCustomerId();
-    if (!userId) return throwError(() => new Error('Customer ID not found. Please log in.'));
-
-    return this._http.get<GeneralResponse<WishListReadDTO>>(`${this._baseUrl}/customer/${userId}`).pipe(
-      catchError(err => throwError(() => err))
+    if (!userId) return throwError(() => new Error('Customer ID not found.'));
+    return this.getFirstWishlist(userId).pipe(
+      switchMap(wishlist => {
+        if (!wishlist) return throwError(() => new Error('Wishlist not found.'));
+        return of({ success: true, data: wishlist });
+      })
     );
   }
 
@@ -82,56 +81,40 @@ export class WishlistService {
     return this.getLoggedWishList().pipe(
       switchMap(res => {
         const wishlist = res.data;
-        const item = wishlist?.items?.find(i => i.productId === productId);
-        if (!wishlist || !item) {
-          return throwError(() => new Error('Item not found in wishlist.'));
-        }
+        const item = wishlist.items.find(i => i.productId === productId);
+        if (!item) throw new Error('Item not found');
         return this.removeItemFromWishList(wishlist.id, item.id);
-      }),
-      catchError(err => throwError(() => err))
+      })
     );
   }
 
   addItemToCustomerWishlist(customerId: string, productId: string) {
-    return this.getWishListByCustomerId(customerId).pipe(
-      switchMap(res => {
-        const wishlist = res.data;
+    return this.getFirstWishlist(customerId).pipe(
+      switchMap(wishlist => {
         const dto: WishListItemCreateDTO = { productId };
-
-        if (wishlist && wishlist.id) {
+        if (wishlist) {
           return this.addItemToWishList(wishlist.id, dto);
         } else {
-          const newWishlist: WishListCreateDTO = {
+          return this.createWishList({
             customerId,
             items: [dto]
-          };
-          return this.createWishList(newWishlist);
+          });
         }
-      }),
-      catchError(err => throwError(() => err))
+      })
     );
   }
-
-  // ==================== State ====================
 
   private updateWishlistState(items: WishListItemReadDTO[]) {
     this.itemsCountSubject.next(items.length);
   }
 
   initializeWishlistState(): void {
-    if (!this.isBrowser) return;
+    const customerId = this.getCustomerId();
+    if (!customerId) return;
 
-    const userId = this.getCustomerId();
-    if (!userId) return;
-
-    this.getLoggedWishList().subscribe({
-      next: (res) => {
-        const items = res.data?.items || [];
-        this.updateWishlistState(items);
-      },
-      error: (err) => {
-        console.error('Failed to initialize wishlist state:', err);
-      }
+    this.getFirstWishlist(customerId).subscribe({
+      next: (wishlist) => this.updateWishlistState(wishlist?.items ?? []),
+      error: (err) => console.error('Failed to init wishlist:', err)
     });
   }
 }

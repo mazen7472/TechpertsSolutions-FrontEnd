@@ -15,7 +15,7 @@ export class ProductsComponent implements OnInit {
   pagedProducts: IProduct[] = []; // products to show on current page
   currentPage: number = 1;
   pageSize: number = 9;           // products per page
-  totalPages: number = 0;
+  totalPages: number = 6;
   totalPagesArray: number[] = [];
 
 ngOnInit() {

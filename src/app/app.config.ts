@@ -13,6 +13,12 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),        
     provideClientHydration(),
     provideAnimations(),
-    provideToastr()
+    provideToastr({
+      positionClass: 'toast-top-left',
+      timeOut: 2000,
+      progressBar: true,
+      closeButton: true,
+      preventDuplicates: true,
+    })
   ]
 };

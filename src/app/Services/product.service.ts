@@ -10,11 +10,12 @@ export class ProductService {
   private _httpClient = inject(HttpClient);
   private _baseUrl = Environment.baseUrl;
 
-  getAllProducts(
+ getAllProducts(
   pageNumber: number,
   pageSize: number,
   sortBy: string,
-  sortDesc: boolean
+  sortDesc: boolean,
+  searchQuery: string = ''
 ): Observable<{ success: boolean; message: string; data: IPagedProducts }> {
   let params = new HttpParams()
     .set('pageNumber', pageNumber.toString())
@@ -22,13 +23,15 @@ export class ProductService {
     .set('sortBy', sortBy)
     .set('sortDesc', sortDesc.toString());
 
-  console.log('🔍 Making API request to:', `${this._baseUrl}/Product/all`);
-  console.log('🔍 Parameters:', { pageNumber, pageSize, sortBy, sortDesc });
+  if (searchQuery.trim()) {
+    params = params.set('search', searchQuery.trim());
+  }
 
   return this._httpClient.get<{ success: boolean; message: string; data: IPagedProducts }>(
     `${this._baseUrl}/Product/all`,
     { params }
   );
+
 }
 getProductById(id: string): Observable<GeneralResponce>{
   return this._httpClient.get<GeneralResponce>(`${this._baseUrl}/Product/${id}`)

@@ -1,28 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { WishListItemReadDTO } from '../../Interfaces/wishlist';
 import { WishlistService } from '../../Services/wishlist.service';
 import { CartService } from '../../Services/cart.service';
 import { ToastrService } from 'ngx-toastr';
 import { WishlistItemComponent } from './components/wishlist-item/wishlist-item.component';
-
-
-
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-wishlist',
   standalone: true,
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css'],
-  imports: [WishlistItemComponent]
+  imports: [WishlistItemComponent, NgIf, NgFor]
 })
 export class WishlistComponent implements OnInit {
-
   wishList: WishListItemReadDTO[] = [];
+  wishlistId: string = '';
+  isLoading = true;
 
   constructor(
     private _wishList: WishlistService,
-    private _router: Router,
     private _cartService: CartService,
     private _toastr: ToastrService
   ) {}
@@ -31,38 +28,50 @@ export class WishlistComponent implements OnInit {
     this.loadWishlist();
   }
 
-  private loadWishlist() {
+  private loadWishlist(): void {
     this._wishList.getLoggedWishList().subscribe({
-      next: (res) => {
-        this.wishList = res.data?.items || [];
-        console.log('Wishlist:', this.wishList);
+      next: (res: any) => {
+        this.wishList = res.data.items;
+        this.wishlistId = res.data.id;
+        this.isLoading = false;
       },
-      error: (err) => console.error('Error loading wishlist:', err)
+      error: (err) => {
+        console.error('Error loading wishlist:', err);
+        this.isLoading = false;
+      }
     });
   }
 
-  removeItem(productId: string) {
+  onRemove(productId: string): void {
     this._wishList.removeWishedItem(productId).subscribe({
       next: () => {
-        this._toastr.error('Item has been removed', 'Remove', { timeOut: 2000 });
+        this._toastr.error('Item removed');
         this.loadWishlist();
-        // refresh wishlist count
         this._wishList.initializeWishlistState();
       },
-      error: (err) => console.error('Error removing item:', err)
+      error: () => this._toastr.error('Remove failed')
     });
   }
 
-  addToCart(id: string) {
- 
-    this._cartService.addItem({ productId: id, quantity: 1 }).subscribe({
+  onAddToCart(productId: string): void {
+    this._cartService.addItem({ productId, quantity: 1 }).subscribe({
       next: () => {
-        this._toastr.success('Item has been added', 'Success', { timeOut: 1000 });
-
-     
+        this._toastr.success('Added to cart');
         this._cartService.initializeCartState();
       },
-      error: (err) => console.error('Error adding to cart:', err)
+      error: () => this._toastr.error('Add to cart failed')
+    });
+  }
+
+  moveAll(): void {
+    const customerId = localStorage.getItem('customerId')!;
+    this._wishList.moveAllToCart(this.wishlistId, customerId).subscribe({
+      next: () => {
+        this._toastr.success('Moved all items to cart');
+        this.loadWishlist();
+        this._cartService.initializeCartState();
+      },
+      error: () => this._toastr.error('Failed to move items')
     });
   }
 }

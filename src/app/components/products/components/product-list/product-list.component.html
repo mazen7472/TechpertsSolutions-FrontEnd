@@ -52,29 +52,29 @@
   }
 
   <!-- Pagination -->
-  @if (totalPages > 1) {
-    <nav aria-label="Page navigation" class="mt-4">
-      <ul class="pagination justify-content-center">
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
-            Previous
+@if (totalPages > 1) {
+  <nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="currentPage === 1">
+        <button class="page-link" (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+          Previous
+        </button>
+      </li>
+
+      @for (page of totalPagesArray; track page) {
+        <li class="page-item" [class.active]="currentPage === page">
+          <button class="page-link" (click)="changePage(page)">
+            {{ page }}
           </button>
         </li>
+      }
 
-        @for (page of totalPagesArray; track $index) {
-          <li class="page-item" [class.active]="currentPage === ($index + 1)">
-            <button class="page-link" (click)="changePage($index + 1)">
-              {{ $index + 1 }}
-            </button>
-          </li>
-        }
-
-        <li class="page-item" [class.disabled]="currentPage === totalPages">
-          <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
-            Next
-          </button>
-        </li>
-      </ul>
-    </nav>
-  }
+      <li class="page-item" [class.disabled]="currentPage === totalPages">
+        <button class="page-link" (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
+}
 </div>

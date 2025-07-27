@@ -37,9 +37,9 @@ export interface GeneralResponce {
   success:boolean;
 }
 export interface IPagedProducts {
-  items: IProduct[];
-  totalItems: number;
   pageNumber: number;
   pageSize: number;
+  totalItems: number;
   totalPages: number;
+  items: IProduct[];
 }

@@ -22,6 +22,10 @@ export class ProductItemComponent implements OnInit {
   _wishlistService = inject(WishlistService);
   _toastr = inject(ToastrService);
 
+  ngOnInit(): void {
+    console.log('Product item initialized with:', this.productC);
+  }
+
   onAddToCart() {
     this.addToCart.emit(this.productC.id);
   }
@@ -34,36 +38,24 @@ export class ProductItemComponent implements OnInit {
     (event.target as HTMLImageElement).src = 'https://picsum.photos/seed/' + this.productC.id + '/300/200';
   }
 
-  ngOnInit(): void {
-    console.log('Product item initialized with:', this.productC);
-  }
-
-  // ADD WISHLIST LOGIC HERE
-onAddToWishlist(product: IProduct) {
-  const customerId = localStorage.getItem('customerId');
-  if (!customerId) {
-    this._toastr.error('Please login first');
-    return;
-  }
-
-  console.log('💖 Attempting to add to wishlist:', { productId: product.id, customerId });
-
-  this._wishlistService.addItemToCustomerWishlist(customerId, product.id).subscribe({
-    next: () => {
-      console.log('✅ Wishlist API success');
-      this._toastr.success('Added to wishlist');
-      this._wishlistService.initializeWishlistState();
-    },
-    error: (err) => {
-      console.error('❌ Wishlist API error details:', {
-        status: err.status,
-        statusText: err.statusText,
-        message: err.message,
-        url: err.url,
-        error: err.error
-      });
-      this._toastr.error('Could not add to wishlist - Check if API is running');
+  onAddToWishlist(product: IProduct) {
+    const customerId = localStorage.getItem('customerId');
+    if (!customerId) {
+      this._toastr.error('Please login first');
+      return;
     }
-  });
-}
+
+    console.log('💖 Adding to wishlist:', { productId: product.id, customerId });
+
+    this._wishlistService.addItemToCustomerWishlist(customerId, product.id).subscribe({
+      next: () => {
+        this._toastr.success('Added to wishlist!');
+        this._wishlistService.initializeWishlistState();
+      },
+      error: (err) => {
+        console.error('❌ Wishlist API error:', err);
+        this._toastr.error('Failed to add to wishlist.');
+      }
+    });
+  }
 }
