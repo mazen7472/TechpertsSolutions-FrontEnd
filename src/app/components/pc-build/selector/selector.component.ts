@@ -19,17 +19,7 @@ export class SelectorComponent {
     {
       name: 'Processor',
       selected: true,
-      selectedProduct: {
-        id: 'fake-id-1',
-        name: 'Intel Core i9',
-        price: 549,
-        discountPrice: 499,
-        imageUrl: 'https://example.com/products/intel-core-i9.jpg',
-        categoryName: 'Components',
-        subCategoryId: 'SUBCAT-PROCESSOR-001',
-        subCategoryName: 'Processors',
-        status: 'Approved'
-      }
+      selectedProduct: null
     },
     { name: 'Motherboard', selected: false, selectedProduct: null },
     { name: 'CPU Cooler', selected: false, selectedProduct: null },

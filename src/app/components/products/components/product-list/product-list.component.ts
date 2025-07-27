@@ -22,6 +22,8 @@ export class ProductListComponent implements OnInit {
   currentPage: number = 1;
   pageSize: number = 6;
   totalPages: number = 0;
+  loading = false;
+  error = '';
 
   _toastr = inject(ToastrService);
 
@@ -35,6 +37,9 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts(): void {
+    this.loading = true;
+    this.error = '';
+    
     const sortBy = 'price';
     const sortDesc = this.sortOrder === 'high';
 
@@ -42,14 +47,23 @@ export class ProductListComponent implements OnInit {
       .getAllProducts(this.currentPage, this.pageSize, sortBy, sortDesc, this.searchQuery)
       .subscribe({
         next: (response) => {
-          const pagedData: IPagedProducts = response.data;
-          this.pagedProducts = pagedData.items;
-          this.totalPages = pagedData.totalPages;
+          if (response.success) {
+            const pagedData: IPagedProducts = response.data;
+            this.pagedProducts = pagedData.items;
+            this.totalPages = pagedData.totalPages;
+          } else {
+            this.error = response.message || 'Failed to load products';
+            this.pagedProducts = [];
+            this.totalPages = 0;
+          }
+          this.loading = false;
         },
         error: (err) => {
-          
+          console.error('Error loading products:', err);
+          this.error = 'Failed to load products. Please try again later.';
           this.pagedProducts = [];
           this.totalPages = 0;
+          this.loading = false;
         }
       });
   }

@@ -1,9 +1,28 @@
 <div class="card p-3 shadow-sm">
   <h4 class="mb-3">All Customers</h4>
 
-  @if (customers.length === 0) {
-    <div class="text-muted">No customers found.</div>
-  } @else {
+  <!-- Loading State -->
+  @if (loading) {
+    <div class="text-center py-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Loading customers...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (error && !loading) {
+    <div class="text-center py-4">
+      <div class="alert alert-danger">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        {{ error }}
+      </div>
+    </div>
+  }
+
+  <!-- Customers Table -->
+  @if (customers.length > 0 && !loading) {
     <div class="table-responsive">
       <table class="table table-bordered table-hover">
         <thead class="table-light">
@@ -15,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (customer of customers; track customer.email) {
+          @for (customer of customers; track customer.id) {
             <tr>
               <td>{{ customer.name }}</td>
               <td>{{ customer.email }}</td>
@@ -32,5 +51,7 @@
         </tbody>
       </table>
     </div>
+  } @else if (!loading && !error) {
+    <div class="text-muted">No customers found.</div>
   }
 </div>

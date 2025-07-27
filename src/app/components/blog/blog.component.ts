@@ -1,17 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { RouterLink } from '@angular/router';
-
-
-
-interface Article {
-  title: string;
-  description: string;
-  img: string;
-  date: string;
-  slug: string;
-}
+import { ArticleService, Article } from '../../Services/article.service';
 
 interface Category {
   title: string;
@@ -25,33 +16,40 @@ interface Category {
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
-export class BlogComponent {
+export class BlogComponent implements OnInit {
   searchQuery = '';
   showSubscription = true;
+  loading = false;
+  error = '';
 
-  featuredArticles: Article[] = [
-    {
-      title: 'RTX 4090 vs RTX 4080',
-      description: 'Gaming benchmarks that reveal next-gen GPU power.',
-      img: 'assets/Images/w800.png',
-      date: 'Jan 15, 2025',
-      slug: 'rtx-4090-vs-4080'
-    },
-    {
-      title: 'AMD Ryzen 7000 Review',
-      description: 'How AMD stacks up against Intel’s 13th gen chips.',
-      img: 'https://www.amd.com/content/dam/amd/en/images/pr-feed/1247269.png',
-      date: 'Jan 12, 2025',
-      slug: 'ryzen-7000-review'
-    },
-    {
-      title: 'DDR5 vs DDR4',
-      description: 'Is upgrading worth it for your setup?',
-      img: 'assets/Images/ddr5.jpg',
-      date: 'Jan 10, 2025',
-      slug: 'ddr5-vs-ddr4'
-    }
-  ];
+  featuredArticles: Article[] = [];
+
+  constructor(private articleService: ArticleService) {}
+
+  ngOnInit(): void {
+    this.loadFeaturedArticles();
+  }
+
+  loadFeaturedArticles(): void {
+    this.loading = true;
+    this.error = '';
+    
+    this.articleService.getFeaturedArticles().subscribe({
+      next: (response) => {
+        if (response.success) {
+          this.featuredArticles = response.data;
+        } else {
+          this.error = response.message || 'Failed to load articles';
+        }
+        this.loading = false;
+      },
+      error: (err) => {
+        console.error('Error loading articles:', err);
+        this.error = 'Failed to load articles. Please try again later.';
+        this.loading = false;
+      }
+    });
+  }
 
  categories = [
     { label: 'SERVICES', imageUrl: '../../../../../assets/Images/Categories/customer-service-1.png' },

@@ -28,8 +28,28 @@
     </div>
   </div>
 
+  <!-- Loading State -->
+  @if (loading) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Loading products...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (error && !loading) {
+    <div class="text-center py-5">
+      <div class="alert alert-danger">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        {{ error }}
+      </div>
+    </div>
+  }
+
   <!-- Product Grid -->
-  @if (pagedProducts.length > 0) {
+  @if (pagedProducts.length > 0 && !loading) {
     <div class="row row-cols-1 row-cols-md-3 g-4">
       @for (product of pagedProducts; track $index) {
         <app-product-item
@@ -38,7 +58,7 @@
         </app-product-item>
       }
     </div>
-  } @else {
+  } @else if (!loading && !error) {
     <div class="text-center py-5">
       <div class="alert alert-info">
         <i class="bi bi-info-circle me-2"></i>

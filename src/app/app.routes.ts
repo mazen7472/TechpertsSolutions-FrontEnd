@@ -25,6 +25,8 @@ export const routes: Routes = [
   { path: 'wish-list', loadComponent: () => import('./components/wishlist/wishlist.component').then(m => m.WishlistComponent), title: 'Wish List' },
 
   { path: 'pc-compare', loadComponent: () => import('./components/pc-compare/pc-compare.component').then(m => m.PcCompareComponent), title: 'Pc Compare' },
+  { path: 'test-comparison', loadComponent: () => import('./components/pc-compare/test-comparison.component').then(m => m.TestComparisonComponent), title: 'Test Comparison' },
+  { path: 'debug-specifications', loadComponent: () => import('./components/pc-compare/debug-specifications.component').then(m => m.DebugSpecificationsComponent), title: 'Debug Specifications' },
 
   {
     path: 'dashboard',
