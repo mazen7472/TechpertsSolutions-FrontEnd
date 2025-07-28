@@ -1,3 +1,5 @@
+import { IProduct } from "./iproduct";
+
 export interface IGeneralResponse<T> {
   success: boolean;
   message: string;
@@ -7,6 +9,10 @@ export interface IGeneralResponse<T> {
 export interface ICategory {
   id: string;
   name: string;
+  description:string;
+  image:string;
+  products:IProduct[];
+  subCategory:any;
 }
 
 export interface ICategoryWithProducts {

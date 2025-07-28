@@ -97,3 +97,9 @@
     padding: 2rem 1.2rem;
   }
 }
+/* register.component.css */
+.error {
+  color: red;
+  font-size: 0.85em;
+  margin-top: 5px;
+}

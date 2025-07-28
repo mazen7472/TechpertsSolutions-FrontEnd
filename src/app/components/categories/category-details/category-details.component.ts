@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../../Interfaces/iproduct';
 import { CommonModule } from '@angular/common';
-import { ProductService } from '../../../Services/product.service';
+import { CategoryService } from '../../../Services/category.service';
 
 @Component({
   selector: 'app-category-details',
@@ -13,14 +13,14 @@ import { ProductService } from '../../../Services/product.service';
 })
 export class CategoryDetailsComponent implements OnInit {
   categoryName = '';
-  products: IProduct[] = [];
+  products: any;
   loading = false;
   error = '';
 
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
-    private productService: ProductService
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
@@ -43,10 +43,13 @@ export class CategoryDetailsComponent implements OnInit {
     this.error = '';
 
     // Load products for the specific category
-    this.productService.getAllProducts(1, 50, 'name', false, categoryId).subscribe({
+    this.categoryService.getCategoryById(categoryId).subscribe({
       next: (response) => {
+        console.log(response);
+        
         if (response.success) {
-          this.products = response.data.items;
+          this.products = response.data.products;
+          console.log(this.products);
         } else {
           this.error = response.message || 'Failed to load products';
         }
