@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { Environment } from '../Environment/environment';
-import { GeneralResponce, IPagedProducts, IProduct } from '../Interfaces/iproduct';
+import { GeneralResponce, GeneralResponse, IPagedProducts, IProduct, ProductCategory, ProductCreateDTO, ProductPendingStatus, ProductUpdateDTO } from '../Interfaces/iproduct';
 
 @Injectable({
   providedIn: 'root'
@@ -99,5 +99,33 @@ export class ProductService {
     );
   }
 
+  addProduct(
+  dto: ProductCreateDTO,
+  category: ProductCategory,
+  status: ProductPendingStatus
+): Observable<GeneralResponse<string>> {
+  const params = new HttpParams()
+    .set('categorySelect', category) // ← sends value like 'Motherboard'
+    .set('statusSelect', status.toString());
+
+  return this._httpClient.post<GeneralResponse<string>>(this._baseUrl, dto, { params });
+}
+
+updateProduct(
+    id: string,
+    dto: ProductUpdateDTO,
+    category: ProductCategory,
+    status: ProductPendingStatus
+  ): Observable<GeneralResponse<string>> {
+    const params = new HttpParams()
+      .set('categorySelect', category)
+      .set('statusSelect', status);
+
+    return this._httpClient.put<GeneralResponse<string>>(`${this._baseUrl}/${id}`, dto, { params });
+  }
+
+deleteProduct(id: string): Observable<GeneralResponse<string>> {
+    return this._httpClient.delete<GeneralResponse<string>>(`${this._baseUrl}/${id}`);
+  }
 
 }

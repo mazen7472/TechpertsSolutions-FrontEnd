@@ -47,6 +47,16 @@ export const routes: Routes = [
         path: 'edit-customer',
         loadComponent: () => import('./components/dashboard/components/edit-customer/edit-customer.component').then(m => m.EditCustomerComponent),
         title: 'Edit Customer'
+      },
+      {
+        path: 'pending-products',
+        loadComponent: () => import('./components/dashboard/components/pending-products/pending-products.component').then(m => m.PendingProductsComponent),
+        title: 'Pending Products'
+      },
+      {
+        path: 'create-product',
+        loadComponent: () => import('./components/dashboard/components/create-product/create-product.component').then(m => m.CreateProductComponent),
+        title: 'Create Product'
       }
     ]
   }
