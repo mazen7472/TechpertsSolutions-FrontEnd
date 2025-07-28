@@ -234,3 +234,36 @@ body.dark-theme .section-subtitle {
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.12);
 }
+
+
+/* === Glassy Card Container === */
+.glassy-card {
+  background: rgba(30, 34, 48, 0.55);
+  border: 1px solid var(--border-color);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 20px var(--shadow-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.glassy-card:hover {
+  transform: scale(1.015);
+  box-shadow: 0 0 30px rgba(127, 90, 240, 0.3);
+}
+
+/* === Component Name & Status === */
+.component-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(6px);
+  color: var(--text-primary);
+}
+

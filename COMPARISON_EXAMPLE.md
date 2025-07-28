@@ -1,5 +1,6 @@
 # Product Comparison Example
 
+
 ## API Data Structure
 Your API returns product specifications in this format:
 ```json

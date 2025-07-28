@@ -3,8 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule, NgClass } from '@angular/common';
 import { ProductService } from '../../../../Services/product.service';
 import { CartService } from '../../../../Services/cart.service';
-import { IProduct } from '../../../../Interfaces/iproduct';
 import { WishlistService } from '../../../../Services/wishlist.service';
+import { ToastrService } from 'ngx-toastr';
+import { IProduct } from '../../../../Interfaces/iproduct';
 
 @Component({
   selector: 'app-productdetails',
@@ -14,7 +15,6 @@ import { WishlistService } from '../../../../Services/wishlist.service';
   styleUrl: './productdetails.component.css'
 })
 export class ProductdetailsComponent {
-  productId!: string;
   product!: IProduct;
   isAddingToCart = false;
 
@@ -22,17 +22,21 @@ export class ProductdetailsComponent {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.productId = this.route.snapshot.paramMap.get('id')!;
-    this.productService.getProductById(this.productId).subscribe({
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) return;
+
+    this.productService.getProductById(id).subscribe({
       next: (res) => {
         this.product = res.data;
       },
       error: (err) => {
-        console.error('Error fetching product:', err);
+        console.error('❌ Error fetching product:', err);
+    
       }
     });
   }
@@ -42,48 +46,50 @@ export class ProductdetailsComponent {
 
     this.isAddingToCart = true;
 
+    const price = this.product.discountPrice && this.product.discountPrice < this.product.price
+      ? this.product.discountPrice
+      : this.product.price;
+
     this.cartService.addItem({
       productId: this.product.id,
       quantity: 1,
       product: {
         id: this.product.id,
         name: this.product.name,
-        price: this.product.discountPrice || this.product.price,
+        price,
         imageUrl: this.product.imageUrl,
         discountPrice: this.product.discountPrice
       }
     }).subscribe({
       next: () => {
+        this.cartService.initializeCartState();
+        this.toastr.success(`${this.product.name} added to cart!`);
         this.isAddingToCart = false;
-        this.cartService.initializeCartState(); // refresh cart state
-        // alert(`${this.product.name} added to cart!`);
       },
       error: (err) => {
+        console.error('❌ Failed to add to cart:', err);
+        this.toastr.error('Something went wrong. Please try again.');
         this.isAddingToCart = false;
-        console.error('Failed to add to cart:', err);
-        alert('Something went wrong. Please try again.');
       }
     });
   }
 
-  onAddToWishlist(): void {
-  const customerId = localStorage.getItem('customerId');
-  if (!customerId || !this.product) {
-    alert('Please log in first.');
-    return;
-  }
-
-  this.wishlistService.addItemToCustomerWishlist(customerId, this.product.id).subscribe({
-    next: (res) => {
-      console.log(res);
-      
-      alert(`${this.product.name} added to your wishlist.`);
-    },
-    error: (err) => {
-      console.error('Failed to add to wishlist:', err);
-      alert('Something went wrong. Try again later.');
+  onAddToWishlist(product: IProduct): void {
+    const customerId = localStorage.getItem('customerId');
+    if (!customerId) {
+      this.toastr.error('Please log in first');
+      return;
     }
-  });
-}
 
+    this.wishlistService.addItemToCustomerWishlist(customerId, product.id).subscribe({
+      next: () => {
+        this.toastr.success(`${this.product.name} added to whishlist!`);
+        this.wishlistService.initializeWishlistState();
+      },
+      error: (err) => {
+        console.error('❌ Wishlist error:', err);
+        this.toastr.error('Failed to add to wishlist.');
+      }
+    });
+  }
 }
