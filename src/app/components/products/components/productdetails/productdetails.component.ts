@@ -1,11 +1,11 @@
-import { ToastrService } from 'ngx-toastr';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule, NgClass } from '@angular/common';
 import { ProductService } from '../../../../Services/product.service';
 import { CartService } from '../../../../Services/cart.service';
-import { IProduct } from '../../../../Interfaces/iproduct';
 import { WishlistService } from '../../../../Services/wishlist.service';
+import { ToastrService } from 'ngx-toastr';
+import { IProduct } from '../../../../Interfaces/iproduct';
 
 @Component({
   selector: 'app-productdetails',
@@ -23,17 +23,21 @@ export class ProductdetailsComponent {
     private route: ActivatedRoute,
     private productService: ProductService,
     private cartService: CartService,
-    private wishlistService: WishlistService
+    private wishlistService: WishlistService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id')!;
+    if (!this.productId) return;
+
     this.productService.getProductById(this.productId).subscribe({
       next: (res) => {
         this.product = res.data;
       },
       error: (err) => {
-        console.error('Error fetching product:', err);
+        console.error('❌ Error fetching product:', err);
+        
       }
     });
   }
@@ -43,64 +47,53 @@ export class ProductdetailsComponent {
 
     this.isAddingToCart = true;
 
-    this.cartService.addItem({
-      productId: this.product.id,
-      quantity: 1,
-      product: {
-        id: this.product.id,
-        name: this.product.name,
-        price: this.product.discountPrice || this.product.price,
-        imageUrl: this.product.imageUrl,
-        discountPrice: this.product.discountPrice
-      }
-    }).subscribe({
+    const priceToUse =
+      this.product.discountPrice && this.product.discountPrice < this.product.price
+        ? this.product.discountPrice
+        : this.product.price;
+
+    this.cartService
+      .addItem({
+        productId: this.product.id,
+        quantity: 1,
+        product: {
+          id: this.product.id,
+          name: this.product.name,
+          price: priceToUse,
+          imageUrl: this.product.imageUrl,
+          discountPrice: this.product.discountPrice
+        }
+      })
+      .subscribe({
+        next: () => {
+          this.cartService.initializeCartState();
+          this.toastr.success(`${this.product.name} added to cart!`);
+          this.isAddingToCart = false;
+        },
+        error: (err) => {
+          console.error('❌ Failed to add to cart:', err);
+          this.toastr.error('Something went wrong. Please try again.');
+          this.isAddingToCart = false;
+        }
+      });
+  }
+
+  onAddToWishlist(product: IProduct): void {
+    const customerId = localStorage.getItem('customerId');
+    if (!customerId) {
+      this.toastr.error('Please log in first');
+      return;
+    }
+
+    this.wishlistService.addItemToCustomerWishlist(customerId, product.id).subscribe({
       next: () => {
-        this.isAddingToCart = false;
-        this.cartService.initializeCartState(); // refresh cart state
-        // alert(`${this.product.name} added to cart!`);
+        this.toastr.success(`${product.name} added to wishlist!`);
+        this.wishlistService.initializeWishlistState();
       },
       error: (err) => {
-        this.isAddingToCart = false;
-        console.error('Failed to add to cart:', err);
-        alert('Something went wrong. Please try again.');
+        console.error('❌ Wishlist error:', err);
+        this.toastr.error('Failed to add to wishlist.');
       }
     });
   }
-
-  onAddToWishlist(): void {
-  const customerId = localStorage.getItem('customerId');
-  if (!customerId || !this.product) {
-    alert('Please log in first.');
-    return;
-  }
-
-  this.wishlistService.addItemToCustomerWishlist(customerId, this.product.id).subscribe({
-    next: (res) => {
-      console.log(res);
-      alert(`${this.product.name} added to your wishlist.`);
-    },
-    error: (err) => {
-      console.error('Failed to add to wishlist:', err);
-      alert('Something went wrong. Try again later.');
-    }
-  });
-}
-
-  // onAddToWishlist(product: IProduct): void {
-  //   const customerId = localStorage.getItem('customerId');
-  //   if (!customerId) {
-  //     this.toastr.error('Please log in first');
-  //     return;
-  //   }
-  //   this.wishlistService.addItemToCustomerWishlist(customerId, product.id).subscribe({
-  //     next: () => {
-  //       this.toastr.success(`${this.product.name} added to whishlist!`);
-  //       this.wishlistService.initializeWishlistState();
-  //     },
-  //     error: (err) => {
-  //       console.error('❌ Wishlist error:', err);
-  //       this.toastr.error('Failed to add to wishlist.');
-  //     }
-  //   });
-  // }
 }
