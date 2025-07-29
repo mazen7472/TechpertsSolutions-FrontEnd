@@ -1,57 +1,3 @@
-<<<<<<< HEAD
-
-
-
-.contact .container {
-  background-color: rgba(255, 255, 255, 0.03); /* subtle glass blur */
-  border-radius: 20px;
-  padding: 2.5rem 2rem;
-  box-shadow: 0 0 25px var(--shadow-color);
-  backdrop-filter: blur(8px);
-  z-index: 1;
-  position: relative;
-  color: var(--text-primary);
-}
-
-.contact .lead {
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-/* Google Map Styling */
-.contact iframe {
-  border: none;
-  width: 100%;
-  height: 350px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px var(--shadow-color);
-  margin-bottom: 2rem;
-}
-
-/* Info Cards */
-.contact .d-flex {
-  background-color: var(--input-bg);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 12px var(--shadow-color);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  color: var(--text-primary);
-}
-
-.contact .d-flex:hover {
-  transform: translateY(-3px);
-  background-color: var(--card-bg);
-}
-
-.contact .d-flex i {
-  color: var(--primary-color);
-}
-
-/* Floating Label Form */
-form {
-  position: relative;
-  z-index: 2;
-=======
 .contact {
   position: relative;
   overflow: hidden;
@@ -132,30 +78,16 @@ form {
   border-radius: 12px;
   border: 1px solid rgba(var(--accent-blue), 0.1);
   box-shadow: 0 8px 20px var(--shadow-color);
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 }
 
 .form-group {
   position: relative;
-<<<<<<< HEAD
-  margin-bottom: 1.5rem;
-=======
   margin-bottom: 2rem;
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 }
 
 .floating-label input,
 .floating-label textarea {
   width: 100%;
-<<<<<<< HEAD
-  padding: 1rem 1rem 0.5rem;
-  font-size: 1rem;
-  background-color: var(--input-bg);
-  border: 2px solid var(--input-border);
-  border-radius: 10px;
-  color: var(--input-text);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-=======
   padding: 1.2rem 1rem 0.6rem;
   font-size: 1rem;
   background-color: var(--input-bg);
@@ -163,20 +95,10 @@ form {
   border-radius: 8px;
   color: var(--input-text);
   transition: all 0.3s ease;
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 }
 
 .floating-label label {
   position: absolute;
-<<<<<<< HEAD
-  top: 1rem;
-  left: 1rem;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  pointer-events: none;
-  transition: 0.2s ease all;
-  background: var(--input-bg);
-=======
   top: 1.2rem;
   left: 1rem;
   color: var(--text-muted);
@@ -184,7 +106,6 @@ form {
   pointer-events: none;
   transition: all 0.3s ease;
   background: transparent;
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
   padding: 0 0.25rem;
 }
 
@@ -196,32 +117,6 @@ form {
   left: 0.8rem;
   font-size: 0.75rem;
   color: var(--primary-color);
-<<<<<<< HEAD
-  font-weight: 500;
-}
-
-.floating-label input:focus,
-.floating-label textarea:focus {
-  border-color: var(--primary-color);
-  box-shadow: 0 0 8px rgba(13, 202, 240, 0.15);
-  outline: none;
-}
-
-/* Submit Button */
-form button {
-  border-radius: 50px;
-  padding: 0.75rem 2.5rem;
-  background-color: var(--button-bg);
-  color: var(--button-text);
-  font-size: 1rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  border: none;
-}
-
-form button:hover {
-  background-color: var(--button-hover-bg);
-  transform: translateY(-2px);
-=======
   font-weight: 600;
   background: var(--input-bg);
 }
@@ -275,26 +170,10 @@ form button:hover {
 
 .btn-primary:hover .submit-icon {
   transform: translateX(3px);
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-<<<<<<< HEAD
-  .contact {
-    padding: 2rem 1rem;
-  }
-
-  .contact .container {
-    padding: 2rem 1rem;
-  }
-
-  .contact .d-flex {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-=======
   .contact .container {
     padding: 2rem 1.5rem;
   }
@@ -318,4 +197,3 @@ form button:hover {
     padding: 0.75rem;
   }
 }
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41

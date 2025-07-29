@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IProduct } from '../../../Interfaces/iproduct';
 import { CommonModule } from '@angular/common';
-<<<<<<< HEAD
 import { CategoryService } from '../../../Services/category.service';
-=======
-import { ProductService } from '../../../Services/product.service';
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 
 @Component({
   selector: 'app-category-details',
@@ -17,22 +13,14 @@ import { ProductService } from '../../../Services/product.service';
 })
 export class CategoryDetailsComponent implements OnInit {
   categoryName = '';
-<<<<<<< HEAD
   products: any;
-=======
-  products: IProduct[] = [];
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
   loading = false;
   error = '';
 
   constructor(
     private route: ActivatedRoute, 
     private router: Router,
-<<<<<<< HEAD
     private categoryService: CategoryService
-=======
-    private productService: ProductService
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
   ) {}
 
   ngOnInit(): void {
@@ -55,7 +43,6 @@ export class CategoryDetailsComponent implements OnInit {
     this.error = '';
 
     // Load products for the specific category
-<<<<<<< HEAD
     this.categoryService.getCategoryById(categoryId).subscribe({
       next: (response) => {
         console.log(response);
@@ -63,12 +50,6 @@ export class CategoryDetailsComponent implements OnInit {
         if (response.success) {
           this.products = response.data.products;
           console.log(this.products);
-=======
-    this.productService.getAllProducts(1, 50, 'name', false, categoryId).subscribe({
-      next: (response) => {
-        if (response.success) {
-          this.products = response.data.items;
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
         } else {
           this.error = response.message || 'Failed to load products';
         }

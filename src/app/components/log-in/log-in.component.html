@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="logIngSystem mt-5 d-flex justify-content-center align-items-center m-5">
     <div class="container p-4 shadow-lg rounded-3" style="max-width: 500px; background-color: #ffffff;">
         <h1 class="text-primary text-center mb-4">Login</h1>
@@ -30,46 +29,6 @@
                 Don’t have an account?
                 <a routerLink="/regester" class="btn btn-link text-primary">Sign Up</a>
             </p>
-=======
-<div class="login-system">
-    <div class="login-container floating-anim">
-        <h1 class="login-title tech-glitch text-gradient" data-text="Login">Login</h1>
-        <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="login-form">
-            <div class="form-group floating-label">
-                <input type="email" formControlName="email" id="loginEmail" required placeholder=" " class="form-control">
-                <label for="loginEmail">Email</label>
-                <div class="form-line"></div>
-                <i class="bi bi-envelope input-icon"></i>
-            </div>
-            
-            <div class="form-group floating-label">
-                <input type="password" formControlName="password" id="loginPassword" required placeholder=" " class="form-control">
-                <label for="loginPassword">Password</label>
-                <div class="form-line"></div>
-                <i class="bi bi-lock input-icon"></i>
-            </div>
-            
-            @if (errorMessage) {
-                <div class="error-message pulse-effect">
-                    <i class="bi bi-exclamation-triangle-fill me-2"></i>{{errorMessage}}
-                </div>
-            }
-            
-            <button type="submit" class="login-btn pulse-effect" [disabled]="isLoading">
-                @if (!isLoading) {
-                    <span>Log In</span>
-                    <i class="bi bi-arrow-right ms-2"></i>
-                } @else {
-                    <span>Logging in...</span>
-                    <div class="spinner-border spinner-border-sm ms-2" role="status"></div>
-                }
-            </button>
-            
-            <div class="login-footer">
-                <p>Don't have an account? <a routerLink="/register" class="register-link hover-glow">Sign Up</a></p>
-                <a routerLink="/forgot-password" class="forgot-link">Forgot Password?</a>
-            </div>
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
         </form>
     </div>
 </div>

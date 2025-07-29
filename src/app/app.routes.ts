@@ -6,7 +6,6 @@ export const routes: Routes = [
 
   { path: 'home', loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent), title: 'Home Page' },
   { path: 'blog', loadComponent: () => import('./components/blog/blog.component').then(m => m.BlogComponent), title: 'Blog Page' },
-<<<<<<< HEAD
 
  
   { path: 'blog/:slug', loadComponent: () => import('./components/categories/article-detail/article-detail.component').then(m => m.ArticleDetailComponent), title: 'Article Details' },
@@ -15,7 +14,6 @@ export const routes: Routes = [
   { path: 'products', loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent), title: 'Products Page' },
   { path: 'product-details/:id', loadComponent: () => import('./components/products/components/productdetails/productdetails.component').then(m => m.ProductdetailsComponent), title: 'Product Details' },
   { path: 'contact', loadComponent: () => import('./components/contact/contact.component').then(m => m.ContactComponent), title: 'Contact Page' },
-=======
   { path: 'about', loadComponent: () => import('./components/about/about.component').then(m => m.AboutComponent), title: 'About Page' },
   { path: 'contact', loadComponent: () => import('./components/contact/contact.component').then(m => m.ContactComponent), title: 'Contact Page' },
   { path: 'privacy', loadComponent: () => import('./components/privacy/privacy.component').then(m => m.PrivacyComponent), title: 'Privacy Page' },
@@ -25,7 +23,6 @@ export const routes: Routes = [
 
   { path: 'products', loadComponent: () => import('./components/products/products.component').then(m => m.ProductsComponent), title: 'Products Page' },
   { path: 'product-details/:id', loadComponent: () => import('./components/products/components/productdetails/productdetails.component').then(m => m.ProductdetailsComponent), title: 'Product Details' },
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
   { path: 'login', loadComponent: () => import('./components/log-in/log-in.component').then(m => m.LogInComponent), title: 'LogIn Page' },
   { path: 'register', loadComponent: () => import('./components/register/register.component').then(m => m.RegisterComponent), title: 'Register Page' },
   { path: 'cart', loadComponent: () => import('./components/cart/cart.component').then(m => m.CartComponent), title: 'Cart', canActivate: [authGuard] },
@@ -59,7 +56,6 @@ export const routes: Routes = [
         path: 'edit-customer',
         loadComponent: () => import('./components/dashboard/components/edit-customer/edit-customer.component').then(m => m.EditCustomerComponent),
         title: 'Edit Customer'
-<<<<<<< HEAD
       },
       {
         path: 'pending-products',
@@ -70,8 +66,6 @@ export const routes: Routes = [
         path: 'create-product',
         loadComponent: () => import('./components/dashboard/components/create-product/create-product.component').then(m => m.CreateProductComponent),
         title: 'Create Product'
-=======
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
       }
     ]
   }

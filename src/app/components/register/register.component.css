@@ -1,23 +1,3 @@
-<<<<<<< HEAD
-.register-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4rem 1rem;
-
-  color: var(--text-primary);
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.register-container {
-  background-color: var(--card-bg);
-  padding: 2.5rem 2rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 15px var(--shadow-color);
-  max-width: 600px;
-  width: 100%;
-  transition: background-color 0.3s ease;
-=======
 /* Register System Container */
 .register-system {
   display: flex;
@@ -90,95 +70,10 @@
 .register-content {
   flex: 1;
   padding: 3rem;
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 }
 
 .register-title {
   text-align: center;
-<<<<<<< HEAD
-  margin-bottom: 2rem;
-  font-size: 2rem;
-  color: var(--text-primary);
-}
-
-.register-form .form-group {
-  margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.register-form label {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-}
-
-.register-form input {
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-  background-color: var(--bg-color);
-  color: var(--text-primary);
-  font-size: 1rem;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.register-form input::placeholder {
-  color: var(--text-secondary);
-}
-
-.register-form input:focus {
-  border-color: var(--accent-blue);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(26, 140, 255, 0.2);
-}
-
-.btn-submit {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: var(--accent-red);
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-submit:hover {
-  background-color: var(--accent-blue);
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 1rem;
-  color: var(--text-secondary);
-}
-
-.login-link a {
-  color: var(--accent-blue);
-  text-decoration: none;
-  font-weight: 600;
-  margin-left: 4px;
-}
-
-.login-link a:hover {
-  color: var(--accent-red);
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .register-container {
-    padding: 2rem 1.2rem;
-  }
-}
-/* register.component.css */
-.error {
-  color: red;
-  font-size: 0.85em;
-  margin-top: 5px;
-=======
   margin-bottom: 2.5rem;
   font-size: 2.2rem;
   font-weight: 700;
@@ -358,5 +253,4 @@
   .input-icon {
     left: 0.75rem;
   }
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 }

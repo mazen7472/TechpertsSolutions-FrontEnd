@@ -3,11 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 import { RouterLink } from '@angular/router';
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 interface Article {
   title: string;
   description: string;
