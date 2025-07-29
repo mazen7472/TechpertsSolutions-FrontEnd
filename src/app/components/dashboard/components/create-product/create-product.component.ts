@@ -3,12 +3,12 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 import { ProductCategory, ProductPendingStatus } from '../../../../Interfaces/iproduct';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../../../../Services/product.service';
-import { TitleCasePipe } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-product',
   standalone: true,
-  imports: [ReactiveFormsModule,TitleCasePipe],
+  imports: [ReactiveFormsModule,TitleCasePipe,CommonModule],
   templateUrl: './create-product.component.html',
   styleUrl: './create-product.component.css'
 })
@@ -81,12 +81,14 @@ export class CreateProductComponent {
 
     this.productService.addProduct(dto, category, statusSelect).subscribe({
       next: (res) => {
+        console.log(res);
         this.toastr.success(res.message);
         this.form.reset();
         this.specifications.clear();
         this.warranties.clear();
       },
       error: (err) => {
+        console.log(err);
         this.toastr.error(err.error?.message || 'Something went wrong');
       },
       complete: () => this.submitting = false

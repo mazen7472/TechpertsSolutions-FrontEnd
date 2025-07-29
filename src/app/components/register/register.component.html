@@ -80,8 +80,8 @@
   <select id="role" formControlName="role">
     <option value="">-- Select a role --</option>
     <option value="Customer">Customer</option>
-    <option value="TechCompany">Tech Company</option>
-    <option value="DeliveryPerson">Delivery Person</option>
+    <option value="TechCompany">TechCompany</option>
+    <option value="DeliveryPerson">DeliveryPerson</option>
   </select>
   <div class="error" *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
     <small *ngIf="registerForm.get('role')?.errors?.['required']">role selection is required.</small>
