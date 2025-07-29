@@ -7,7 +7,11 @@
   --content-bg: #121621;
   --card-bg: #1e2230;
   --sidebar-bg: #1e2230;
+<<<<<<< HEAD
     --bg-image:url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDJmbzFwOWxvNTFjeTVrdXozZmpjMmxhN3NwenJzNzZ1NjRuaGNjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NzSUEgbTWB7TW/giphy.gif');
+=======
+  --bg-image:url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDJmbzFwOWxvNTFjeTVrdXozZmpjMmxhN3NwenJzNzZ1NjRuaGNjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/NzSUEgbTWB7TW/giphy.gif');
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 
   --text-primary: #eeeeee;
   --text-secondary: #d6d6d6;
@@ -50,12 +54,21 @@
 /* === Light Theme === */
 body.dark-theme {
   /* Layout & Backgrounds */
+<<<<<<< HEAD
   --bg-color: #faf5f0;
   --content-bg: #fdf6ec;
   --card-bg: #ffffff;
   --sidebar-bg: #f7f0df;
   --bg-image:url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXNrOGFpYzdkMnR5aWY2OXhnOHppNm44dDd4cHBhemlyZmZ2enV0YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/h7uTwqEHysbd2lhyDP/giphy.gif');
 
+=======
+  --bg-color: #f5ece3;
+  --content-bg: #fdf6ec;
+  --card-bg: #ffffff;
+  --sidebar-bg: #f7f0df;
+  --bg-image:url('https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExemNiZGN4aGw0bnN6eW96YjQ5YXU4cGo4dTRqMXk4andubTBvbHQydyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/sWFYgYFjHGugleQdO7/giphy.gif');
+  
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
   /* Typography */
   --text-primary: #222222;
   --text-secondary: #555555;
@@ -146,6 +159,7 @@ body {
 
 .section-title {
   position: relative;
+<<<<<<< HEAD
   font-size: clamp(2.5rem, 5vw, 3.5rem);
   margin-bottom: 4rem;
   padding: 4rem 1rem 2rem;
@@ -156,18 +170,39 @@ body {
   text-align: center;
   font-family: 'Orbitron', sans-serif;
 
+=======
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-align: center;
+  text-shadow: 
+    0 2px 10px rgba(127, 90, 240, 0.4),
+    0 4px 20px rgba(127, 90, 240, 0.2);
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif; /* Or your preferred professional font */
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 }
 
 .section-title::before {
   content: "";
   position: absolute;
   left: 50%;
+<<<<<<< HEAD
   bottom: 0;
   width: 80px;
+=======
+  bottom: 1.5rem;
+  width: 100px;
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
   height: 4px;
   background: linear-gradient(90deg, #7f5af0, #ff4c4c);
   transform: translateX(-50%);
   border-radius: 4px;
+<<<<<<< HEAD
   box-shadow: 0 0 12px rgba(127, 90, 240, 0.7);
   animation: glowBar 2s infinite alternate;
 }
@@ -178,6 +213,26 @@ body {
   }
   to {
     box-shadow: 0 0 25px rgba(127, 90, 240, 1);
+=======
+  box-shadow: 
+    0 0 15px rgba(127, 90, 240, 0.6),
+    0 0 30px rgba(127, 90, 240, 0.3);
+  animation: glowBar 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowBar {
+  0% {
+    opacity: 0.9;
+    box-shadow: 
+      0 0 10px rgba(127, 90, 240, 0.6),
+      0 0 20px rgba(127, 90, 240, 0.3);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 
+      0 0 20px rgba(127, 90, 240, 0.8),
+      0 0 40px rgba(127, 90, 240, 0.4);
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
   }
 }
 
@@ -236,6 +291,7 @@ body.dark-theme .section-subtitle {
 }
 
 
+<<<<<<< HEAD
 /* === Glassy Card Container === */
 .glassy-card {
   background: rgba(30, 34, 48, 0.55);
@@ -267,3 +323,9 @@ body.dark-theme .section-subtitle {
   color: var(--text-primary);
 }
 
+=======
+input, input:hover, input:focus {
+  border: none;
+  outline: none;
+}
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41

@@ -3,12 +3,20 @@ import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } fr
 import { ProductCategory, ProductPendingStatus } from '../../../../Interfaces/iproduct';
 import { ToastrService } from 'ngx-toastr';
 import { ProductService } from '../../../../Services/product.service';
+<<<<<<< HEAD
 import { CommonModule, TitleCasePipe } from '@angular/common';
+=======
+import { TitleCasePipe } from '@angular/common';
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 
 @Component({
   selector: 'app-create-product',
   standalone: true,
+<<<<<<< HEAD
   imports: [ReactiveFormsModule,TitleCasePipe,CommonModule],
+=======
+  imports: [ReactiveFormsModule,TitleCasePipe],
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
   templateUrl: './create-product.component.html',
   styleUrl: './create-product.component.css'
 })
@@ -81,14 +89,20 @@ export class CreateProductComponent {
 
     this.productService.addProduct(dto, category, statusSelect).subscribe({
       next: (res) => {
+<<<<<<< HEAD
         console.log(res);
+=======
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
         this.toastr.success(res.message);
         this.form.reset();
         this.specifications.clear();
         this.warranties.clear();
       },
       error: (err) => {
+<<<<<<< HEAD
         console.log(err);
+=======
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
         this.toastr.error(err.error?.message || 'Something went wrong');
       },
       complete: () => this.submitting = false

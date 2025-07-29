@@ -2,7 +2,11 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { Environment } from '../Environment/environment';
+<<<<<<< HEAD
 import { GeneralResponce, GeneralResponse, IPagedProducts, IProduct, ProductCategory, ProductCreateDTO, ProductPendingStatus, ProductUpdateDTO } from '../Interfaces/iproduct';
+=======
+import { GeneralResponce, IPagedProducts, IProduct } from '../Interfaces/iproduct';
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 
 @Injectable({
   providedIn: 'root'
@@ -99,6 +103,7 @@ export class ProductService {
     );
   }
 
+<<<<<<< HEAD
   addProduct(
   dto: ProductCreateDTO,
   category: ProductCategory,
@@ -127,5 +132,7 @@ updateProduct(
 deleteProduct(id: string): Observable<GeneralResponse<string>> {
     return this._httpClient.delete<GeneralResponse<string>>(`${this._baseUrl}/${id}`);
   }
+=======
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 
 }

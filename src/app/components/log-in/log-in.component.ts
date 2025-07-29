@@ -52,7 +52,10 @@ export class LogInComponent {
           const customerId = res.data?.customerId;
           const userName = res.data?.userName;
           const userCart = res.data?.userCart;
+<<<<<<< HEAD
           const userRole = res.data?.roleName;
+=======
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 
           if (token) {
             console.log(token);
@@ -62,7 +65,10 @@ export class LogInComponent {
               if(customerId) localStorage.setItem('customerId', customerId);
               if(userName) localStorage.setItem('userName', userName)
               if(userCart) localStorage.setItem('userCart', userCart.id)
+<<<<<<< HEAD
               if(userRole) localStorage.setItem('userRole', userRole)
+=======
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
             }
 
             this._authService.userData = { userName, customerId };

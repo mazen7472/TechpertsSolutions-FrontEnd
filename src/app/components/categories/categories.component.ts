@@ -12,6 +12,7 @@ import { ICategory } from '../../Interfaces/icategory';
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
+<<<<<<< HEAD
 export class CategoriesComponent implements OnInit {
 categories : any
 
@@ -33,6 +34,19 @@ ngOnInit(): void {
       }
     })
   }
+=======
+export class CategoriesComponent {
+categories = [
+  { id: 'services', name: 'SERVICES', imageUrl: 'assets/Images/Categories/customer-service-1.png' },
+  { id: 'cpu', name: 'Processors', imageUrl: 'assets/Images/Categories/processors.png' },
+  { id: 'motherboard', name: 'Motherboards', imageUrl: 'assets/Images/Categories/motherboard.png' },
+  { id: 'gpu', name: 'Graphics Cards', imageUrl: 'assets/Images/video-card-1.png' },
+  { id: 'laptop', name: 'Laptop', imageUrl: 'assets/Images/Categories/laptop.png' },
+  { id: 'ram', name: 'RAM', imageUrl: 'assets/Images/Categories/ram.png' },
+];
+
+  constructor(private router: Router) {}
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 
   navigateToCategory(id: string) {
     this.router.navigate(['/category-details', id]);

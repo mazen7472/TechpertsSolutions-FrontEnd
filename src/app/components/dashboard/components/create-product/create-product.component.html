@@ -32,6 +32,7 @@
       </select>
     </div>
 
+<<<<<<< HEAD
     <div formArrayName="specifications">
     <h3>Specifications</h3>
     <button type="button" (click)="addSpecification()">Add Specification</button>
@@ -53,6 +54,29 @@
       <button type="button" (click)="removeWarranty(i)">Remove</button>
     </div>
   </div>
+=======
+    <!-- Specifications -->
+    <div formArrayName="specifications" class="nested-group">
+      <h3>Specifications</h3>
+      <div *ngFor="let spec of specifications.controls; let i = index" [formGroupName]="i" class="nested-item">
+        <input formControlName="key" placeholder="Key" />
+        <input formControlName="value" placeholder="Value" />
+        <button type="button" (click)="removeSpecification(i)">Remove</button>
+      </div>
+      <button type="button" class="add-btn" (click)="addSpecification()">Add Specification</button>
+    </div>
+
+    <!-- Warranties -->
+    <div formArrayName="warranties" class="nested-group">
+      <h3>Warranties</h3>
+      <div *ngFor="let war of warranties.controls; let i = index" [formGroupName]="i" class="nested-item">
+        <input formControlName="durationInMonths" placeholder="Months" type="number" />
+        <input formControlName="description" placeholder="Description" />
+        <button type="button" (click)="removeWarranty(i)">Remove</button>
+      </div>
+      <button type="button" class="add-btn" (click)="addWarranty()">Add Warranty</button>
+    </div>
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 
     <button class="submit-btn" type="submit" [disabled]="submitting || form.invalid">Create Product</button>
   </form>

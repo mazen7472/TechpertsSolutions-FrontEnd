@@ -1,6 +1,13 @@
 # Product Comparison Example
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+
+>>>>>>> 52145c0324eae47ab10c858dc2a92586768afc32
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
 ## API Data Structure
 Your API returns product specifications in this format:
 ```json

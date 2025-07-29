@@ -43,6 +43,7 @@ export interface IPagedProducts {
   totalPages: number;
   items: IProduct[];
 }
+<<<<<<< HEAD
 
 export interface ProductCreateDTO {
   name: string;
@@ -96,3 +97,5 @@ export interface GeneralResponse<T> {
   message: string;
   data: T;
 }
+=======
+>>>>>>> d83075c2677b91f5abf9fc0b47458cf5bc9c0a41
